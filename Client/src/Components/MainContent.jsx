@@ -6,7 +6,6 @@ import Navbar from "./Navbar";
 import Sidebar from "./Sidebar/Sidebar";
 
 const MainContent = () => {
-  const [isSidebarOpen, setIsSidebarOpen] = useState(false);
   return (
     <>
       <Navbar />

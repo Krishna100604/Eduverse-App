@@ -1,16 +1,44 @@
-// src/Components/AboutUs.jsx
 import React from "react";
 import { motion } from "framer-motion";
-import { FaUsers, FaBook, FaChartLine, FaAward, FaGlobe, FaHandsHelping } from "react-icons/fa";
+
+import {
+  FaUsers,
+  FaBars,
+  FaBook,
+  FaChartLine,
+  FaAward,
+  FaGlobe,
+  FaHandsHelping,
+  FaTimes,
+} from "react-icons/fa";
+import Sidebar from "../Sidebar/Sidebar";
+import { useState } from "react";
 
 const AboutUs = () => {
+  const [isOpen, setIsOpen] = React.useState(false);
+
+  const toggleSidebar = () => {
+    setIsOpen(!isOpen);
+  };
+
   return (
     <motion.div
       initial={{ opacity: 0 }}
       animate={{ opacity: 1 }}
       transition={{ duration: 0.6 }}
-      className="container mx-auto mt-20 px-4 py-10"
+      className="container mx-auto px-4 py-10 relative"
     >
+      {/* Toggle button for sidebar */}
+      <button
+        onClick={toggleSidebar}
+        className="text-2xl p-2 bg-gray-200 rounded-full hover:bg-gray-300 focus:outline-none z-50"
+      >
+        <FaBars />
+      </button>
+
+      {/* Sidebar component */}
+      <Sidebar isOpen={isOpen} toggleSidebar={toggleSidebar} />
+
       <motion.section
         initial={{ opacity: 0, y: 20 }}
         animate={{ opacity: 1, y: 0 }}
@@ -87,10 +115,10 @@ const AboutUs = () => {
           <h2 className="text-3xl font-bold text-gray-800 mb-4">Our Story</h2>
           <p className="text-gray-600 leading-relaxed mb-6">
             Eduverse was founded in 2024 with the aim of transforming education
-            through technology. Our journey began with a small team of passionate
-            individuals who believed in the power of personalized learning. Over
-            the years, we have grown into a global platform that caters to the
-            needs of millions of learners.
+            through technology. Our journey began with a small team of
+            passionate individuals who believed in the power of personalized
+            learning. Over the years, we have grown into a global platform that
+            caters to the needs of millions of learners.
           </p>
           <p className="text-gray-600 leading-relaxed">
             We are committed to continuous innovation and improvement, ensuring

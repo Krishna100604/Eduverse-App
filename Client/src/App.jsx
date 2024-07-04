@@ -24,10 +24,7 @@ const App = () => {
   return (
     <div className="bg-gray-100 min-h-screen">
       {/* {showNavbar && <Navbar />} */}
-      {/* <Sidebar
-        isOpen={isSidebarOpen}
-        toggleSidebar={() => setIsSidebarOpen(false)}
-      /> */}
+
       <div className="flex">
         <div className="flex-1">
           <Routes>
@@ -41,9 +38,7 @@ const App = () => {
           </Routes>
         </div>
       </div>
-      {/* {showNavbar && */}
-      <Footer />
-      {/* } */}
+      {showNavbar && <Footer />}
     </div>
   );
 };
