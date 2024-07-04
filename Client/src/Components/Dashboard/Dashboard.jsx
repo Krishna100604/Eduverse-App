@@ -1,14 +1,33 @@
-import React, { useState } from 'react';
-import { motion } from 'framer-motion';
-import { CircularProgressbar, buildStyles } from 'react-circular-progressbar';
-import 'react-circular-progressbar/dist/styles.css';
-import { Line, Bar } from 'react-chartjs-2';
-import { Chart as ChartJS, CategoryScale, LinearScale, PointElement, LineElement, BarElement, Title, Tooltip, Legend } from 'chart.js';
-import { FaBullhorn, FaBook, FaTrophy, FaBars, FaTimes } from 'react-icons/fa';
-import Sidebar from '../Sidebar/Sidebar';
+import React, { useState } from "react";
+import { motion } from "framer-motion";
+import { CircularProgressbar, buildStyles } from "react-circular-progressbar";
+import "react-circular-progressbar/dist/styles.css";
+import { Line, Bar } from "react-chartjs-2";
+import {
+  Chart as ChartJS,
+  CategoryScale,
+  LinearScale,
+  PointElement,
+  LineElement,
+  BarElement,
+  Title,
+  Tooltip,
+  Legend,
+} from "chart.js";
+import { FaBullhorn, FaBook, FaTrophy, FaBars, FaTimes } from "react-icons/fa";
+import Sidebar from "../Sidebar/Sidebar";
 
 // Register Chart.js components
-ChartJS.register(CategoryScale, LinearScale, PointElement, LineElement, BarElement, Title, Tooltip, Legend);
+ChartJS.register(
+  CategoryScale,
+  LinearScale,
+  PointElement,
+  LineElement,
+  BarElement,
+  Title,
+  Tooltip,
+  Legend
+);
 
 const Dashboard = () => {
   const [isSidebarOpen, setIsSidebarOpen] = useState(false);
@@ -18,27 +37,27 @@ const Dashboard = () => {
 
   // Data for Line Chart
   const lineData = {
-    labels: ['Week 1', 'Week 2', 'Week 3', 'Week 4'],
+    labels: ["Week 1", "Week 2", "Week 3", "Week 4"],
     datasets: [
       {
-        label: 'Learning Hours',
+        label: "Learning Hours",
         data: [5, 10, 15, 20],
         fill: false,
-        backgroundColor: 'rgba(75,192,192,0.6)',
-        borderColor: 'rgba(75,192,192,1)',
+        backgroundColor: "rgba(75,192,192,0.6)",
+        borderColor: "rgba(75,192,192,1)",
       },
     ],
   };
 
   // Data for Bar Chart
   const barData = {
-    labels: ['Course 1', 'Course 2', 'Course 3', 'Course 4'],
+    labels: ["Course 1", "Course 2", "Course 3", "Course 4"],
     datasets: [
       {
-        label: 'Completion Rate (%)',
+        label: "Completion Rate (%)",
         data: [70, 80, 90, 60],
-        backgroundColor: 'rgba(153, 102, 255, 0.6)',
-        borderColor: 'rgba(153, 102, 255, 1)',
+        backgroundColor: "rgba(153, 102, 255, 0.6)",
+        borderColor: "rgba(153, 102, 255, 1)",
         borderWidth: 1,
       },
     ],
@@ -56,12 +75,17 @@ const Dashboard = () => {
 
   return (
     <div className="flex min-h-screen bg-gray-100 relative">
-      <Sidebar isOpen={isSidebarOpen} toggleSidebar={() => setIsSidebarOpen(false)} />
+      <Sidebar
+        isOpen={isSidebarOpen}
+        toggleSidebar={() => setIsSidebarOpen(false)}
+      />
       <motion.main
         initial={{ opacity: 0 }}
         animate={{ opacity: 1 }}
         transition={{ duration: 0.6 }}
-        className={`flex-1 p-8 transition-all duration-300 ${isSidebarOpen ? 'ml-64' : 'ml-0'}`}
+        className={`flex-1 p-8 transition-all duration-300 ${
+          isSidebarOpen ? "ml-64" : "ml-0"
+        }`}
       >
         <button
           onClick={() => setIsSidebarOpen(!isSidebarOpen)}
@@ -69,7 +93,9 @@ const Dashboard = () => {
         >
           {isSidebarOpen ? <FaTimes /> : <FaBars />}
         </button>
-        <h1 className="text-4xl font-bold text-gray-800 mb-8 text-center">Dashboard</h1>
+        <h1 className="text-4xl font-bold text-gray-800 mb-8 text-center">
+          Dashboard
+        </h1>
 
         {/* Announcement Banner */}
         <motion.div
@@ -80,7 +106,10 @@ const Dashboard = () => {
         >
           <div className="flex">
             <FaBullhorn className="text-2xl mr-4" />
-            <p className="text-lg">New courses have been added! Check out the latest offerings in the "Recommended Courses" section.</p>
+            <p className="text-lg">
+              New courses have been added! Check out the latest offerings in the
+              "Recommended Courses" section.
+            </p>
           </div>
         </motion.div>
 
@@ -93,9 +122,12 @@ const Dashboard = () => {
             variants={sectionVariants}
             className="bg-white rounded-lg shadow-lg p-6"
           >
-            <h2 className="text-xl font-bold text-gray-800 mb-4">Welcome Back, User!</h2>
+            <h2 className="text-xl font-bold text-gray-800 mb-4">
+              Welcome Back, User!
+            </h2>
             <p className="text-gray-600 leading-relaxed">
-              Here's a brief overview of your learning progress and recent activities.
+              Here's a brief overview of your learning progress and recent
+              activities.
             </p>
           </motion.div>
 
@@ -107,22 +139,25 @@ const Dashboard = () => {
             variants={sectionVariants}
             className="bg-white rounded-lg shadow-lg p-6"
           >
-            <h2 className="text-xl font-bold text-gray-800 mb-4">Progress Overview</h2>
+            <h2 className="text-xl font-bold text-gray-800 mb-4">
+              Progress Overview
+            </h2>
             <div className="flex justify-center">
               <CircularProgressbar
                 value={progress}
                 text={`${progress}%`}
                 styles={buildStyles({
-                  textSize: '16px',
+                  textSize: "16px",
                   pathColor: `rgba(62, 152, 199, ${progress / 100})`,
-                  textColor: '#3e98c7',
-                  trailColor: '#d6d6d6',
-                  backgroundColor: '#3e98c7',
+                  textColor: "#3e98c7",
+                  trailColor: "#d6d6d6",
+                  backgroundColor: "#3e98c7",
                 })}
               />
             </div>
             <p className="text-gray-600 leading-relaxed mt-4">
-              Track your progress and see how far you've come in your learning journey.
+              Track your progress and see how far you've come in your learning
+              journey.
             </p>
           </motion.div>
 
@@ -134,11 +169,21 @@ const Dashboard = () => {
             variants={sectionVariants}
             className="bg-white rounded-lg shadow-lg p-6"
           >
-            <h2 className="text-xl font-bold text-gray-800 mb-4">Recommended Courses</h2>
+            <h2 className="text-xl font-bold text-gray-800 mb-4">
+              Recommended Courses
+            </h2>
             <ul className="text-gray-600 leading-relaxed">
-              <li><FaBook className="inline mr-2" /> Course 1: Introduction to Data Science</li>
-              <li><FaBook className="inline mr-2" /> Course 2: Advanced JavaScript</li>
-              <li><FaBook className="inline mr-2" /> Course 3: Web Development Bootcamp</li>
+              <li>
+                <FaBook className="inline mr-2" /> Course 1: Introduction to
+                Data Science
+              </li>
+              <li>
+                <FaBook className="inline mr-2" /> Course 2: Advanced JavaScript
+              </li>
+              <li>
+                <FaBook className="inline mr-2" /> Course 3: Web Development
+                Bootcamp
+              </li>
             </ul>
           </motion.div>
         </div>
@@ -151,14 +196,20 @@ const Dashboard = () => {
           variants={sectionVariants}
           className="bg-white rounded-lg shadow-lg p-8 mt-8"
         >
-          <h2 className="text-2xl font-bold text-gray-800 mb-4">Visualize Your Learning</h2>
+          <h2 className="text-2xl font-bold text-gray-800 mb-4">
+            Visualize Your Learning
+          </h2>
           <div className="grid grid-cols-1 md:grid-cols-2 gap-8">
             <div>
-              <h3 className="text-xl font-bold text-gray-700 mb-4">Learning Hours</h3>
+              <h3 className="text-xl font-bold text-gray-700 mb-4">
+                Learning Hours
+              </h3>
               <Line data={lineData} />
             </div>
             <div>
-              <h3 className="text-xl font-bold text-gray-700 mb-4">Completion Rate</h3>
+              <h3 className="text-xl font-bold text-gray-700 mb-4">
+                Completion Rate
+              </h3>
               <Bar data={barData} />
             </div>
           </div>
@@ -172,11 +223,19 @@ const Dashboard = () => {
           variants={sectionVariants}
           className="bg-gray-200 rounded-lg shadow-lg p-8 mt-8"
         >
-          <h2 className="text-2xl font-bold text-gray-800 mb-4">Recent Activities</h2>
+          <h2 className="text-2xl font-bold text-gray-800 mb-4">
+            Recent Activities
+          </h2>
           <ul className="text-gray-600 leading-relaxed">
-            <li>Completed: <strong>Module 5: Machine Learning Basics</strong></li>
-            <li>Started: <strong>Course 2: Advanced JavaScript</strong></li>
-            <li>Joined: <strong>Study Group: React Developers</strong></li>
+            <li>
+              Completed: <strong>Module 5: Machine Learning Basics</strong>
+            </li>
+            <li>
+              Started: <strong>Course 2: Advanced JavaScript</strong>
+            </li>
+            <li>
+              Joined: <strong>Study Group: React Developers</strong>
+            </li>
           </ul>
         </motion.section>
 
@@ -188,17 +247,25 @@ const Dashboard = () => {
           variants={sectionVariants}
           className="bg-white rounded-lg shadow-lg p-8 mt-8"
         >
-          <h2 className="text-2xl font-bold text-gray-800 mb-4">Achievements</h2>
+          <h2 className="text-2xl font-bold text-gray-800 mb-4">
+            Achievements
+          </h2>
           <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
             <div className="bg-gray-100 rounded-lg p-4">
               <FaTrophy className="text-4xl text-yellow-500 mb-4" />
               <h3 className="text-lg font-bold text-gray-700">Top Performer</h3>
-              <p className="text-gray-600">Achieved the highest score in the recent assessments.</p>
+              <p className="text-gray-600">
+                Achieved the highest score in the recent assessments.
+              </p>
             </div>
             <div className="bg-gray-100 rounded-lg p-4">
               <FaTrophy className="text-4xl text-yellow-500 mb-4" />
-              <h3 className="text-lg font-bold text-gray-700">Course Completion</h3>
-              <p className="text-gray-600">Completed 5 courses with a 90%+ score.</p>
+              <h3 className="text-lg font-bold text-gray-700">
+                Course Completion
+              </h3>
+              <p className="text-gray-600">
+                Completed 5 courses with a 90%+ score.
+              </p>
             </div>
           </div>
         </motion.section>

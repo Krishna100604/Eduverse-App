@@ -1,20 +1,25 @@
 import React from "react";
 import { Link } from "react-router-dom";
-import { FaChartLine, FaChevronLeft, FaDashcube } from "react-icons/fa";
+import { FaBars, FaChartLine, FaChevronLeft, FaDashcube } from "react-icons/fa";
+import Sidebar from "../Sidebar/Sidebar"; // Import the Sidebar component
 
 const Profile = () => {
+  const [isOpen, setIsOpen] = React.useState(false);
+
+  const toggleSidebar = () => {
+    setIsOpen(!isOpen);
+  };
+
   return (
-    <div className="flex flex-col min-h-screen bg-gray-100 text-black pt-20 p-5">
-      <button>
-        {" "}
-        <Link
-          to="/dashboard"
-          className="flex items-center text-gray-700 hover:text-blue-500"
-        >
-          <FaChevronLeft className="mr-3" />
-          Dashboard
-        </Link>
+    <div className="flex flex-col min-h-screen bg-gray-100 text-black  p-5">
+      <button
+        className="text-2xl p-2 bg-gray-200 rounded-full hover:bg-gray-300 w-fit focus:outline-none"
+        onClick={toggleSidebar}
+      >
+        <FaBars />
       </button>
+      {/* Sidebar component */}
+      <Sidebar isOpen={isOpen} toggleSidebar={toggleSidebar} />{" "}
       {/* User Info Section */}
       <section className="bg-white shadow-md rounded-lg p-6 mb-6">
         <div className="flex items-center space-x-6">
@@ -30,7 +35,6 @@ const Profile = () => {
           </div>
         </div>
       </section>
-
       {/* Enrolled Courses Section */}
       <section className="bg-white shadow-md rounded-lg p-6 mb-6">
         <h3 className="text-xl font-bold mb-4">Enrolled Courses</h3>
@@ -58,7 +62,6 @@ const Profile = () => {
           </div>
         </div>
       </section>
-
       {/* Achievements Section */}
       <section className="bg-white shadow-md rounded-lg p-6">
         <h3 className="text-xl font-bold mb-4">Achievements</h3>

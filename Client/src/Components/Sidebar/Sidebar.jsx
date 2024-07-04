@@ -6,7 +6,6 @@ import {
   FaChalkboardTeacher,
   FaUsers,
   FaTimes,
-  FaMale,
   FaUser,
 } from "react-icons/fa";
 import { motion } from "framer-motion";
@@ -16,15 +15,18 @@ const Sidebar = ({ isOpen, toggleSidebar }) => {
     <motion.aside
       initial={{ x: -250 }}
       animate={{ x: isOpen ? 0 : -250 }}
-      transition={{ type: "spring", stiffness: 100 }}
+      transition={{ type: "just", stiffness: 100 }}
       className="bg-white bg-opacity-60 backdrop-blur-lg fixed top-0 left-0 h-full w-64 p-6 shadow-lg z-20 "
     >
+      {/* Close button */}
       <button
         onClick={toggleSidebar}
-        className="absolute top-4 right-4 text-gray-700 hover:text-blue-500 md:hidden"
+        className="absolute top-4 right-4 text-gray-700 hover:text-blue-500"
       >
         <FaTimes />
       </button>
+
+      {/* Navigation links */}
       <nav className="space-y-4 mt-10">
         <Link
           to="/"

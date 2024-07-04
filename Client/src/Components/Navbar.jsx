@@ -12,7 +12,7 @@ const Navbar = () => {
     <motion.header
       initial={{ y: -100 }}
       animate={{ y: 0 }}
-      transition={{ type: "spring", stiffness: 100 }}
+      transition={{ type: "just", stiffness: 100 }}
       className="bg-blue-500 py-4 fixed top-0 left-0 w-full z-10 shadow-lg"
     >
       <div className="container mx-auto flex justify-between items-center px-4">
