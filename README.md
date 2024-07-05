@@ -9,8 +9,7 @@ Brief description of your project.
 - [Installation](#installation)
 - [Usage](#usage)
 - [Technologies Used](#technologies-used)
-- [Contributing](#contributing)
-- [License](#license)
+
 
 ## Introduction
 
