@@ -1,17 +1,18 @@
 // src/Components/Navbar.jsx
-import React from 'react';
-import { motion } from 'framer-motion';
-import { Link, useLocation } from 'react-router-dom';
+import React from "react";
+import { motion } from "framer-motion";
+import { Link, useLocation } from "react-router-dom";
 
 const Navbar = () => {
   const location = useLocation();
-  const hideSignIn = location.pathname === '/login' || location.pathname === '/signup';
+  const hideSignIn =
+    location.pathname === "/login" || location.pathname === "/signup";
 
   return (
     <motion.header
       initial={{ y: -100 }}
       animate={{ y: 0 }}
-      transition={{ type: 'spring', stiffness: 100 }}
+      transition={{ type: "just", stiffness: 100 }}
       className="bg-blue-500 py-4 fixed top-0 left-0 w-full z-10 shadow-lg"
     >
       <div className="container mx-auto flex justify-between items-center px-4">
@@ -21,7 +22,7 @@ const Navbar = () => {
             animate={{ opacity: 1, y: 0 }}
             transition={{ delay: 0.2 }}
             className="text-3xl font-bold"
-            style={{ textDecoration: 'none' }}
+            style={{ textDecoration: "none" }}
           >
             Eduverse
           </motion.h1>
@@ -31,9 +32,13 @@ const Navbar = () => {
             whileHover={{ scale: 1.05 }}
             whileTap={{ scale: 0.95 }}
             className="text-white hover:text-gray-200"
-            style={{ textDecoration: 'none' }}
+            style={{ textDecoration: "none" }}
           >
-            <Link to="/" className="text-white" style={{ textDecoration: 'none' }}>
+            <Link
+              to="/"
+              className="text-white"
+              style={{ textDecoration: "none" }}
+            >
               Home
             </Link>
           </motion.button>
@@ -41,9 +46,13 @@ const Navbar = () => {
             whileHover={{ scale: 1.05 }}
             whileTap={{ scale: 0.95 }}
             className="text-white hover:text-gray-200"
-            style={{ textDecoration: 'none' }}
+            style={{ textDecoration: "none" }}
           >
-            <Link to="/about" className="text-white" style={{ textDecoration: 'none' }}>
+            <Link
+              to="/about"
+              className="text-white"
+              style={{ textDecoration: "none" }}
+            >
               About Us
             </Link>
           </motion.button>
@@ -51,9 +60,13 @@ const Navbar = () => {
             whileHover={{ scale: 1.05 }}
             whileTap={{ scale: 0.95 }}
             className="text-white hover:text-gray-200"
-            style={{ textDecoration: 'none' }}
+            style={{ textDecoration: "none" }}
           >
-            <Link to="/contact" className="text-white" style={{ textDecoration: 'none' }}>
+            <Link
+              to="/contact"
+              className="text-white"
+              style={{ textDecoration: "none" }}
+            >
               Contact
             </Link>
           </motion.button>
@@ -61,9 +74,13 @@ const Navbar = () => {
             whileHover={{ scale: 1.05 }}
             whileTap={{ scale: 0.95 }}
             className="bg-white text-blue-500 px-4 py-2 rounded-lg shadow-lg hover:bg-blue-100"
-            style={{ textDecoration: 'none' }}
+            style={{ textDecoration: "none" }}
           >
-            <Link to="/dashboard" className="text-blue-500" style={{ textDecoration: 'none' }}>
+            <Link
+              to="/dashboard"
+              className="text-blue-500"
+              style={{ textDecoration: "none" }}
+            >
               Explore
             </Link>
           </motion.button>
@@ -72,9 +89,13 @@ const Navbar = () => {
               whileHover={{ scale: 1.05 }}
               whileTap={{ scale: 0.95 }}
               className="bg-white text-blue-500 px-4 py-2 rounded-lg shadow-lg hover:bg-blue-100"
-              style={{ textDecoration: 'none' }}
+              style={{ textDecoration: "none" }}
             >
-              <Link to="/login" className="text-blue-500" style={{ textDecoration: 'none' }}>
+              <Link
+                to="/login"
+                className="text-blue-500"
+                style={{ textDecoration: "none" }}
+              >
                 Sign In
               </Link>
             </motion.button>

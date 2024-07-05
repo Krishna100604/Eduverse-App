@@ -1,16 +1,32 @@
 // src/Components/ContactUs.jsx
 import React from "react";
 import { motion } from "framer-motion";
-import { FaPhone, FaEnvelope, FaMapMarkerAlt } from "react-icons/fa";
+import Sidebar from "../Sidebar/Sidebar";
+import { FaPhone, FaEnvelope, FaMapMarkerAlt, FaBars } from "react-icons/fa";
 
 const ContactUs = () => {
+  const [isOpen, setIsOpen] = React.useState(false);
+
+  const toggleSidebar = () => {
+    setIsOpen(!isOpen);
+  };
   return (
     <motion.div
       initial={{ opacity: 0 }}
       animate={{ opacity: 1 }}
       transition={{ duration: 0.6 }}
-      className="container mx-auto mt-20 px-4 py-10"
+      className="container mx-auto  px-4 py-10"
     >
+      {/* Toggle button for sidebar */}
+      <button
+        onClick={toggleSidebar}
+        className="text-2xl p-2 bg-gray-200 rounded-full hover:bg-gray-300 focus:outline-none z-50"
+      >
+        <FaBars />
+      </button>
+
+      {/* Sidebar component */}
+      <Sidebar isOpen={isOpen} toggleSidebar={toggleSidebar} />
       <motion.section
         initial={{ opacity: 0, y: 20 }}
         animate={{ opacity: 1, y: 0 }}
