@@ -1,4 +1,4 @@
-# Project Name - EduVerse
+# Project Name - Eduverse
 
 Brief description of your project.
 
