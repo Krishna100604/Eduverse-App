@@ -2,8 +2,8 @@
 import React, { useState } from "react";
 import { motion } from "framer-motion";
 import { Link } from "react-router-dom";
-import Navbar from "./Navbar";
-import Sidebar from "./Sidebar/Sidebar";
+import Navbar from "../Navbar";
+import Sidebar from "../Sidebar/Sidebar";
 
 const MainContent = () => {
   return (
