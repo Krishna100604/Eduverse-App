@@ -1,14 +1,15 @@
-// src/MainContent.jsx
-import React, { useState } from "react";
+import React from "react";
 import { motion } from "framer-motion";
 import { Link } from "react-router-dom";
 import Navbar from "../Navbar";
 import Sidebar from "../Sidebar/Sidebar";
+import Chatbot from "./chatbot";
 
 const MainContent = () => {
   return (
     <>
       <Navbar />
+      <Sidebar />
 
       <motion.main
         initial={{ opacity: 0, y: 20 }}
@@ -168,6 +169,9 @@ const MainContent = () => {
             </motion.button>
           </Link>
         </motion.section>
+
+        {/* Chatbot Section */}
+        <Chatbot />
       </motion.main>
     </>
   );
