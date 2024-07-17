@@ -1,6 +1,6 @@
-import React from "react";
+// src/Components/AboutUs.jsx
+import React, { useEffect, useState } from "react";
 import { motion } from "framer-motion";
-
 import {
   FaUsers,
   FaBars,
@@ -9,17 +9,23 @@ import {
   FaAward,
   FaGlobe,
   FaHandsHelping,
-  FaTimes,
 } from "react-icons/fa";
 import Sidebar from "../Sidebar/Sidebar";
-import { useState } from "react";
 
 const AboutUs = () => {
-  const [isOpen, setIsOpen] = React.useState(false);
+  const [isOpen, setIsOpen] = useState(false);
+  const [contributors, setContributors] = useState([]);
 
   const toggleSidebar = () => {
     setIsOpen(!isOpen);
   };
+
+  useEffect(() => {
+    fetch("https://api.github.com/repos/Krishna100604/Eduverse-App/contributors")
+      .then((response) => response.json())
+      .then((data) => setContributors(data))
+      .catch((error) => console.error("Error fetching contributors:", error));
+  }, []);
 
   return (
     <motion.div
@@ -126,6 +132,40 @@ const AboutUs = () => {
             tools. Join us on this exciting journey and be a part of the future
             of education.
           </p>
+        </div>
+      </motion.section>
+
+      <motion.section
+        initial={{ opacity: 0, y: 20 }}
+        animate={{ opacity: 1, y: 0 }}
+        transition={{ delay: 0.4, duration: 0.6 }}
+        className="bg-white bg-opacity-70 rounded-lg shadow-lg p-8 backdrop-blur-md mt-8"
+      >
+        <h2 className="text-3xl font-bold text-gray-800 mb-4 text-center">
+          Our Team
+        </h2>
+        <div className="grid grid-cols-1 md:grid-cols-3 gap-8">
+          {contributors.map((contributor) => (
+            <div key={contributor.id} className="text-center">
+              <motion.img
+                src={contributor.avatar_url}
+                alt={contributor.login}
+                className="w-24 h-24 rounded-full mx-auto mb-4 transition-transform transform hover:scale-110"
+                whileHover={{ scale: 1.1 }}
+              />
+              <h3 className="text-xl font-bold text-gray-800 mb-2">
+                {contributor.login}
+              </h3>
+              <a
+                href={contributor.html_url}
+                target="_blank"
+                rel="noopener noreferrer"
+                className="text-blue-500"
+              >
+                View Profile
+              </a>
+            </div>
+          ))}
         </div>
       </motion.section>
     </motion.div>
