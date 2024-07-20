@@ -1,9 +1,8 @@
 import React from "react";
 import { motion } from "framer-motion";
-import { Link } from "react-router-dom";
 import Navbar from "../Navbar";
 import Sidebar from "../Sidebar/Sidebar";
-import Chatbot from "./Chatbot"; // Updated import
+import Chatbot from "./chatbot";
 
 const MainContent = () => {
   return (
