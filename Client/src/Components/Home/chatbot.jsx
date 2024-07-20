@@ -2,6 +2,8 @@ import React, { useState, useEffect, useRef } from "react";
 import axios from "axios";
 import { motion } from "framer-motion";
 import { FaCommentDots } from "react-icons/fa";
+import { FaRobot } from "react-icons/fa";
+
 
 const Chatbot = () => {
   const [isOpen, setIsOpen] = useState(false);
@@ -60,7 +62,7 @@ const Chatbot = () => {
           className="bg-blue-500 text-white p-4 rounded-full shadow-lg"
           onClick={toggleChatbot}
         >
-          <FaCommentDots size={24} />
+          <FaRobot size={24} />
         </motion.button>
       </div>
 
@@ -69,7 +71,7 @@ const Chatbot = () => {
           initial={{ opacity: 0, y: 100 }}
           animate={{ opacity: 1, y: 0 }}
           transition={{ duration: 0.3 }}
-          className="fixed bottom-20 right-6 w-80 bg-white bg-opacity-90 backdrop-blur-md p-4 rounded-lg shadow-lg z-50"
+          className="fixed bottom-20 right-6 w-80 bg-white bg-opacity-90 backdrop-blur-md p-4 rounded-lg shadow-lg z-50 mb-1"
         >
           <div className="flex justify-between items-center mb-4">
             <h2 className="text-lg font-bold text-gray-800">Chatbot</h2>
