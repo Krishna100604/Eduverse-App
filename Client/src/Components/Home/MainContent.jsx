@@ -3,7 +3,7 @@ import { motion } from "framer-motion";
 import { Link } from "react-router-dom";
 import Navbar from "../Navbar";
 import Sidebar from "../Sidebar/Sidebar";
-import Chatbot from "./chatbot";
+import Chatbot from "./Chatbot"; // Updated import
 
 const MainContent = () => {
   return (
@@ -145,32 +145,7 @@ const MainContent = () => {
           </div>
         </motion.section>
 
-        {/* Start Your Learning Journey Section */}
-        <motion.section
-          initial={{ opacity: 0, y: 20 }}
-          animate={{ opacity: 1, y: 0 }}
-          transition={{ delay: 1.2, duration: 0.6 }}
-          className="bg-gradient-to-r from-purple-500 to-yellow-500 text-white rounded-lg shadow-lg p-8"
-        >
-          <h2 className="text-2xl font-bold mb-4">
-            Start Your Learning Journey
-          </h2>
-          <p className="leading-relaxed">
-            Ready to experience personalized learning with Eduverse? Sign up now
-            and explore a world of knowledge tailored to your needs.
-          </p>
-          <Link to="/signup">
-            <motion.button
-              whileHover={{ scale: 1.05 }}
-              whileTap={{ scale: 0.95 }}
-              className="bg-white text-red-500 px-4 py-2 rounded-lg mt-4 hover:bg-gray-100"
-            >
-              Sign Up Now
-            </motion.button>
-          </Link>
-        </motion.section>
-
-        {/* Chatbot Section */}
+        {/* Add the Chatbot Component */}
         <Chatbot />
       </motion.main>
     </>
