@@ -6,20 +6,20 @@ body {
     position: fixed;
     bottom: 20px;
     right: 20px;
-    background-color: transparent; /* No background color */
+    background-color: transparent;
     border: none;
     cursor: pointer;
     z-index: 1000;
 }
 
 .chatbot-button img {
-    width: 50px; /* Adjust size as needed */
-    height: 50px; /* Adjust size as needed */
+    width: 50px;
+    height: 50px;
     border-radius: 50%;
 }
 
 .chatbot-container {
-    display: none; /* Initially hidden */
+    display: none;
     position: fixed;
     bottom: 80px;
     right: 20px;
@@ -33,7 +33,7 @@ body {
 }
 
 .chatbot-container.open {
-    display: block; /* Show when open */
+    display: block;
 }
 
 .chatbot-header {
