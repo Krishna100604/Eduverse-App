@@ -1,83 +1,116 @@
-import React, { useState } from "react";
+import React, { useState, useEffect, useRef } from "react";
 import axios from "axios";
-import "./chatbot.css";
-import initialBot from "./ChatbotAssets/initial_bot.png";
-import finalBot from "./ChatbotAssets/final_bot.png";
+import { motion } from "framer-motion";
+import { FaCommentDots } from "react-icons/fa";
 
 const Chatbot = () => {
   const [isOpen, setIsOpen] = useState(false);
   const [messages, setMessages] = useState([]);
-  const [input, setInput] = useState("");
+  const [userMessage, setUserMessage] = useState("");
+  const messagesEndRef = useRef(null);
 
   const toggleChatbot = () => {
     setIsOpen(!isOpen);
   };
 
-  const sendMessage = async () => {
-    if (input.trim()) {
-      setMessages([...messages, { text: input, user: true }]);
+  const handleSendMessage = async () => {
+    if (userMessage.trim() === "") return;
 
-      try {
-        const response = await axios.post('http://localhost:5000/api/chatbot', {
-          message: input,
-        });
+    const newMessages = [...messages, { sender: "user", text: userMessage }];
+    setMessages(newMessages);
+    setUserMessage("");
 
-        const botReply = response.data.response || "Error generating response";
-        setMessages((prevMessages) => [
-          ...prevMessages,
-          { text: botReply, user: false },
-        ]);
-      } catch (error) {
-        setMessages((prevMessages) => [
-          ...prevMessages,
-          {
-            text: "Failed to fetch response. Please try again later.",
-            user: false,
-          },
-        ]);
-      }
+    try {
+      const response = await axios({
+        url: `https://generativelanguage.googleapis.com/v1beta/models/gemini-1.5-flash-latest:generateContent?key=${
+          import.meta.env.VITE_CHATBOT_API_KEY
+        }`,
+        method: "post",
+        data: { contents: [{ parts: [{ text: userMessage }] }] },
+      });
 
-      setInput("");
+      const botResponse =
+        response.data.candidates[0].content.parts[0].text ||
+        "Error generating response";
+      setMessages((prevMessages) => [
+        ...prevMessages,
+        { sender: "bot", text: botResponse },
+      ]);
+    } catch (error) {
+      setMessages((prevMessages) => [
+        ...prevMessages,
+        {
+          sender: "bot",
+          text: "Failed to fetch response. Please try again later.",
+        },
+      ]);
     }
   };
 
-  const handleKeyDown = (e) => {
-    if (e.key === "Enter") {
-      sendMessage();
-    }
-  };
+  useEffect(() => {
+    messagesEndRef.current?.scrollIntoView({ behavior: "smooth" });
+  }, [messages]);
 
   return (
-    <div>
-      <button className="chatbot-button" onClick={toggleChatbot}>
-        <img src={isOpen ? finalBot : initialBot} alt="Chatbot" className="chatbot-icon" />
-      </button>
+    <>
+      <div className="fixed bottom-6 right-6 z-50">
+        <motion.button
+          whileHover={{ scale: 1.1 }}
+          whileTap={{ scale: 0.9 }}
+          className="bg-blue-500 text-white p-4 rounded-full shadow-lg"
+          onClick={toggleChatbot}
+        >
+          <FaCommentDots size={24} />
+        </motion.button>
+      </div>
+
       {isOpen && (
-        <div className="chatbot-container open">
-          <div className="chatbot-header">
-            ChatBot
-            <button className="close-button" onClick={toggleChatbot}>✖</button>
+        <motion.div
+          initial={{ opacity: 0, y: 100 }}
+          animate={{ opacity: 1, y: 0 }}
+          transition={{ duration: 0.3 }}
+          className="fixed bottom-20 right-6 w-80 bg-white bg-opacity-90 backdrop-blur-md p-4 rounded-lg shadow-lg z-50"
+        >
+          <div className="flex justify-between items-center mb-4">
+            <h2 className="text-lg font-bold text-gray-800">Chatbot</h2>
+            <button onClick={toggleChatbot} className="text-gray-600">
+              ✕
+            </button>
           </div>
-          <div className="chatbot-messages">
-            {messages.map((msg, index) => (
-              <div key={index} className={`message ${msg.user ? "user-message" : "bot-reply"}`}>
-                {msg.text}
+          <div className="h-64 bg-white bg-opacity-80 p-2 rounded-lg overflow-y-auto flex flex-col space-y-2">
+            {messages.map((message, index) => (
+              <div
+                key={index}
+                className={`p-3 rounded-lg max-w-xs ${
+                  message.sender === "user"
+                    ? "bg-blue-500 self-end text-white"
+                    : "bg-gray-300 self-start text-black"
+                }`}
+              >
+                <p className="text-sm leading-relaxed">{message.text}</p>
               </div>
             ))}
+            <div ref={messagesEndRef} />
           </div>
-          <div className="chatbot-input">
+          <div className="mt-4 flex space-x-2">
             <input
               type="text"
-              value={input}
-              onChange={(e) => setInput(e.target.value)}
-              onKeyDown={handleKeyDown}
               placeholder="Type a message..."
+              className="flex-1 p-2 rounded-md border-2 border-gray-300 focus:outline-none focus:border-blue-500 text-gray-800"
+              value={userMessage}
+              onChange={(e) => setUserMessage(e.target.value)}
+              onKeyDown={(e) => e.key === "Enter" && handleSendMessage()}
             />
-            <button onClick={sendMessage}>Send</button>
+            <button
+              className="bg-blue-500 text-white p-2 rounded-md"
+              onClick={handleSendMessage}
+            >
+              Send
+            </button>
           </div>
-        </div>
+        </motion.div>
       )}
-    </div>
+    </>
   );
 };
 
