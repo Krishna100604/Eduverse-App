@@ -83,15 +83,15 @@ const Dashboard = () => {
         initial={{ opacity: 0 }}
         animate={{ opacity: 1 }}
         transition={{ duration: 0.6 }}
-        className={`flex-1 p-8 transition-all duration-300 ${
-          isSidebarOpen ? "ml-64" : "ml-0"
+        className={`flex-1 p-8 transition-all duration-300 
+          
         }`}
       >
         <button
           onClick={() => setIsSidebarOpen(!isSidebarOpen)}
           className="text-2xl p-2 bg-gray-200 rounded-full hover:bg-gray-300 focus:outline-none"
         >
-          {isSidebarOpen ? <FaTimes /> : <FaBars />}
+          <FaBars />
         </button>
         <h1 className="text-4xl font-bold text-gray-800 mb-8 text-center">
           Dashboard

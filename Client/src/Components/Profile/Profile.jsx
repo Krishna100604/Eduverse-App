@@ -12,6 +12,9 @@ const Profile = () => {
     setIsOpen(!isOpen);
   };
 
+  const defaultName = "Guest User";
+  const defaultPicture = "https://via.placeholder.com/150";
+
   return (
     <div className="flex flex-col min-h-screen bg-gray-100 text-black  p-5">
       <button
@@ -27,11 +30,11 @@ const Profile = () => {
         <div className="flex items-center space-x-6">
           <img
             className="h-15 rounded-full mr-2 "
-            src={user.picture}
-            alt={user.name}
+            src={user.picture || defaultPicture}
+            alt={user.name || defaultName}
           />
           <div>
-            <h2 className="text-2xl font-bold"> {user.name} </h2>
+            <h2 className="text-2xl font-bold"> {user.name || defaultName} </h2>
             <p className="text-gray-600">{user.email} </p>
             {/* <p className="text-gray-600">San Francisco, CA</p> */}
           </div>
