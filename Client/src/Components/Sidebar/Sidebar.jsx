@@ -9,6 +9,9 @@ import {
   FaUser,
 } from "react-icons/fa";
 import { motion } from "framer-motion";
+import LogoutButton from "../Auth/LogOut";
+import { IoLogOut } from "react-icons/io5";
+import { CiLogout } from "react-icons/ci";
 
 const Sidebar = ({ isOpen, toggleSidebar }) => {
   return (
@@ -63,6 +66,11 @@ const Sidebar = ({ isOpen, toggleSidebar }) => {
           <FaUser className="mr-3" />
           Profile
         </Link>
+
+        <div className="flex items-center text-gray-700 hover:text-blue-500">
+          {/* <CiLogout size={17} className="mr-3" /> */}
+          <IoLogOut size={20} className="mr-2" /> <LogoutButton />
+        </div>
       </nav>
     </motion.aside>
   );

@@ -12,6 +12,8 @@ const Profile = () => {
     setIsOpen(!isOpen);
   };
 
+  console.log(user);
+
   const defaultName = "Guest User";
   const defaultPicture = "https://via.placeholder.com/150";
 

@@ -113,14 +113,9 @@ const Navbar = () => {
           )} */}
 
           {!isAuthenticated && !hideSignIn && (
-            <motion.button
-              whileHover={{ scale: 1.05 }}
-              whileTap={{ scale: 0.95 }}
-              className="bg-white text-blue-500 px-4 py-2 rounded-lg shadow-lg hover:bg-blue-100"
-              style={{ textDecoration: "none" }}
-            >
+            <div className="bg-white text-blue-500 px-4 py-2 rounded-lg shadow-lg hover:bg-blue-100">
               <LoginButton />
-            </motion.button>
+            </div>
           )}
           {isAuthenticated && (
             <div className="flex items-center">
