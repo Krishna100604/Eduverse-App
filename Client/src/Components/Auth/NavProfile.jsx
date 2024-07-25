@@ -1,7 +1,7 @@
 import { useAuth0 } from "@auth0/auth0-react";
 import React from "react";
 
-const Profile = () => {
+const NavProfile = () => {
   const { user, isAuthenticated, isLoading } = useAuth0();
 
   if (isLoading) {
@@ -23,4 +23,4 @@ const Profile = () => {
   );
 };
 
-export default Profile;
+export default NavProfile;

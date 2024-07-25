@@ -4,7 +4,7 @@ import { motion } from "framer-motion";
 import { Link, useLocation } from "react-router-dom";
 import LoginButton from "./Auth/Login";
 import LogoutButton from "./Auth/Logout";
-import Profile from "./Profile/Profile";
+import NavProfile from "./Auth/NavProfile";
 // import Logo from "../assets/Images/Eduverse-logo.png";
 
 const Navbar = () => {
@@ -108,9 +108,9 @@ const Navbar = () => {
             </motion.button>
             
           )} */}
+
           <div className="flex  items-center">
-            <Profile />
-            <LoginButton />
+            <NavProfile /> <LoginButton />
           </div>
         </div>
       </div>
