@@ -23,14 +23,14 @@ const Navbar = () => {
   };
 
   const closeProfileMenu = () => {
-    setIsProfileDropdownOpen(false);
+    setIsProfileMenuOpen(false);
   };
   return (
     <motion.header
       initial={{ y: -100 }}
       animate={{ y: 0 }}
       transition={{ type: "just", stiffness: 100 }}
-      className="bg-blue-500 py-4 fixed top-0 left-0 w-full z-10 shadow-lg"
+      className="bg-blue-500 py-2 fixed top-0 left-0 w-full z-10 shadow-lg"
     >
       <div className="container mx-auto flex justify-between items-center px-4">
         <Link to="/" className="flex items-center space-x-2 text-white">
@@ -89,38 +89,8 @@ const Navbar = () => {
             </Link>
           </motion.button>
 
-          {/* {isAuthenticated && (
-            <motion.button
-              whileHover={{ scale: 1.05 }}
-              whileTap={{ scale: 0.95 }}
-              className="bg-white text-blue-500 px-2 py-1 rounded-lg shadow-lg hover:bg-blue-100"
-              style={{ textDecoration: "none" }}
-            >
-              <Link
-                to="/dashboard"
-                className="text-blue-500"
-                style={{ textDecoration: "none" }}
-              >
-                Explore
-              </Link>
-            </motion.button>
-          )} */}
-
-          {/* {!isAuthenticated && !hideSignIn && (
-            <div className="bg-white text-blue-500 px-4 py-2 rounded-lg shadow-lg hover:bg-blue-100">
-              <LoginButton />
-            </div>
-          )}
-          {isAuthenticated && (
-            <div className="flex items-center">
-              <Link to="/profile">
-                <NavProfile />
-              </Link>
-            </div>
-          )} */}
-
           {isAuthenticated ? (
-            <div>
+            <div className="mt-2">
               <button onClick={toggleProfileMenu}>
                 <NavProfile />
               </button>

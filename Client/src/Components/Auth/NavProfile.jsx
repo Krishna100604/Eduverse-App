@@ -16,7 +16,7 @@ const NavProfile = () => {
     isAuthenticated && (
       <div className="flex items-center">
         <img
-          className="h-8 rounded-full mr-2"
+          className="h-7 rounded-full mr-2"
           src={user.picture}
           alt={getFirstName(user.name)}
         />
