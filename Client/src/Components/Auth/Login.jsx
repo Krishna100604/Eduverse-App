@@ -82,13 +82,23 @@
 
 // export default Login;
 
-import { useAuth0 } from "@auth0/auth0-react";
 import React from "react";
+import { useAuth0 } from "@auth0/auth0-react";
 
-const LoginButton = () => {
-  const { loginWithRedirect } = useAuth0();
+const AuthButton = () => {
+  const { loginWithRedirect, logout, isAuthenticated } = useAuth0();
 
-  return <button onClick={() => loginWithRedirect()}>Log In</button>;
+  return (
+    <div className="bg-white text-blue-500 px-2 py-1 rounded-lg shadow-lg hover:bg-blue-100 ">
+      {isAuthenticated ? (
+        <button onClick={() => logout({ returnTo: window.location.origin })}>
+          Log Out
+        </button>
+      ) : (
+        <button onClick={() => loginWithRedirect()}>Log In</button>
+      )}
+    </div>
+  );
 };
 
-export default LoginButton;
+export default AuthButton;

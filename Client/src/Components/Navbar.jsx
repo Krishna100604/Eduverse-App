@@ -2,6 +2,9 @@
 import React from "react";
 import { motion } from "framer-motion";
 import { Link, useLocation } from "react-router-dom";
+import LoginButton from "./Auth/Login";
+import LogoutButton from "./Auth/Logout";
+import Profile from "./Profile/Profile";
 // import Logo from "../assets/Images/Eduverse-logo.png";
 
 const Navbar = () => {
@@ -75,7 +78,7 @@ const Navbar = () => {
           <motion.button
             whileHover={{ scale: 1.05 }}
             whileTap={{ scale: 0.95 }}
-            className="bg-white text-blue-500 px-4 py-2 rounded-lg shadow-lg hover:bg-blue-100"
+            className="bg-white text-blue-500 px-2 py-1 rounded-lg shadow-lg hover:bg-blue-100"
             style={{ textDecoration: "none" }}
           >
             <Link
@@ -86,22 +89,29 @@ const Navbar = () => {
               Explore
             </Link>
           </motion.button>
-          {!hideSignIn && (
+          {/* {!hideSignIn && (
             <motion.button
               whileHover={{ scale: 1.05 }}
               whileTap={{ scale: 0.95 }}
               className="bg-white text-blue-500 px-4 py-2 rounded-lg shadow-lg hover:bg-blue-100"
               style={{ textDecoration: "none" }}
             >
-              <Link
+              {/* <Link
                 to="/login"
                 className="text-blue-500"
                 style={{ textDecoration: "none" }}
               >
                 Sign In
-              </Link>
+              </Link> 
+
+          
             </motion.button>
-          )}
+            
+          )} */}
+          <div className="flex  items-center">
+            <Profile />
+            <LoginButton />
+          </div>
         </div>
       </div>
     </motion.header>
