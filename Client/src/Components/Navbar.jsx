@@ -1,11 +1,12 @@
 // src/Components/Navbar.jsx
-import React from "react";
+import React, { useState } from "react";
 import { motion } from "framer-motion";
 import { Link, useLocation } from "react-router-dom";
 import LoginButton from "./Auth/Login";
 import { useAuth0 } from "@auth0/auth0-react";
 
 import NavProfile from "./Auth/NavProfile";
+import ProfileMenu from "./Profile/ProfileMenu";
 // import Logo from "../assets/Images/Eduverse-logo.png";
 
 const Navbar = () => {
@@ -15,6 +16,15 @@ const Navbar = () => {
 
   const { isAuthenticated } = useAuth0();
 
+  const [isProfileMenuOpen, setIsProfileMenuOpen] = useState(false);
+
+  const toggleProfileMenu = () => {
+    setIsProfileMenuOpen(!isProfileMenuOpen);
+  };
+
+  const closeProfileMenu = () => {
+    setIsProfileDropdownOpen(false);
+  };
   return (
     <motion.header
       initial={{ y: -100 }}
@@ -78,41 +88,25 @@ const Navbar = () => {
               Contact
             </Link>
           </motion.button>
-          <motion.button
-            whileHover={{ scale: 1.05 }}
-            whileTap={{ scale: 0.95 }}
-            className="bg-white text-blue-500 px-2 py-1 rounded-lg shadow-lg hover:bg-blue-100"
-            style={{ textDecoration: "none" }}
-          >
-            <Link
-              to="/dashboard"
-              className="text-blue-500"
-              style={{ textDecoration: "none" }}
-            >
-              Explore
-            </Link>
-          </motion.button>
-          {/* {!hideSignIn && (
+
+          {/* {isAuthenticated && (
             <motion.button
               whileHover={{ scale: 1.05 }}
               whileTap={{ scale: 0.95 }}
-              className="bg-white text-blue-500 px-4 py-2 rounded-lg shadow-lg hover:bg-blue-100"
+              className="bg-white text-blue-500 px-2 py-1 rounded-lg shadow-lg hover:bg-blue-100"
               style={{ textDecoration: "none" }}
             >
-              {/* <Link
-                to="/login"
+              <Link
+                to="/dashboard"
                 className="text-blue-500"
                 style={{ textDecoration: "none" }}
               >
-                Sign In
-              </Link> 
-
-          
+                Explore
+              </Link>
             </motion.button>
-            
           )} */}
 
-          {!isAuthenticated && !hideSignIn && (
+          {/* {!isAuthenticated && !hideSignIn && (
             <div className="bg-white text-blue-500 px-4 py-2 rounded-lg shadow-lg hover:bg-blue-100">
               <LoginButton />
             </div>
@@ -123,6 +117,20 @@ const Navbar = () => {
                 <NavProfile />
               </Link>
             </div>
+          )} */}
+
+          {isAuthenticated ? (
+            <div>
+              <button onClick={toggleProfileMenu}>
+                <NavProfile />
+              </button>
+              <ProfileMenu
+                isOpen={isProfileMenuOpen}
+                onClose={closeProfileMenu}
+              />
+            </div>
+          ) : (
+            <LoginButton />
           )}
         </div>
       </div>

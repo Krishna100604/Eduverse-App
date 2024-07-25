@@ -11,6 +11,8 @@ import {
 import { motion } from "framer-motion";
 import LogoutButton from "../Auth/LogOut";
 import { IoLogOut } from "react-icons/io5";
+import { MdDashboard } from "react-icons/md";
+
 import { CiLogout } from "react-icons/ci";
 
 const Sidebar = ({ isOpen, toggleSidebar }) => {
@@ -42,7 +44,7 @@ const Sidebar = ({ isOpen, toggleSidebar }) => {
           to="/dashboard"
           className="flex items-center text-gray-700 hover:text-blue-500"
         >
-          <FaChartLine className="mr-3" />
+          <MdDashboard className="mr-3" />
           Dashboard
         </Link>
         <Link

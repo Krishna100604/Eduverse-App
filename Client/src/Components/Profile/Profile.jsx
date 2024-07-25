@@ -12,7 +12,9 @@ const Profile = () => {
     setIsOpen(!isOpen);
   };
 
-  console.log(user);
+  if (isLoading) {
+    return <div>Loading...</div>;
+  }
 
   const defaultName = "Guest User";
   const defaultPicture = "https://via.placeholder.com/150";
@@ -32,13 +34,14 @@ const Profile = () => {
         <div className="flex items-center space-x-6">
           <img
             className="h-15 rounded-full mr-2 "
-            src={user.picture || defaultPicture}
-            alt={user.name || defaultName}
+            src={(isAuthenticated && user.picture) || defaultPicture}
+            alt={(isAuthenticated && user.name) || defaultName}
           />
           <div>
-            <h2 className="text-2xl font-bold"> {user.name || defaultName} </h2>
-            <p className="text-gray-600">{user.email} </p>
-            {/* <p className="text-gray-600">San Francisco, CA</p> */}
+            <h2 className="text-2xl font-bold">
+              {(isAuthenticated && user.name) || defaultName}
+            </h2>
+            {isAuthenticated && <p className="text-gray-600">{user.email}</p>}
           </div>
         </div>
       </section>
