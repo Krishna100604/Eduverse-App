@@ -8,16 +8,19 @@ const NavProfile = () => {
     return <div>Loading ...</div>;
   }
 
+  const getFirstName = (fullName) => {
+    return fullName.split(" ")[0];
+  };
+
   return (
     isAuthenticated && (
       <div className="flex items-center">
         <img
-          className="h-8 rounded-full mr-2 "
+          className="h-8 rounded-full mr-2"
           src={user.picture}
-          alt={user.name}
+          alt={getFirstName(user.name)}
         />
-        <p className="text-white mr-2">{user.name}</p>
-        {/* <p>{user.email}</p> */}
+        <p className="text-white mr-2">{getFirstName(user.name)}</p>
       </div>
     )
   );

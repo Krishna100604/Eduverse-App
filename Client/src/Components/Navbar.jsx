@@ -3,6 +3,7 @@ import React from "react";
 import { motion } from "framer-motion";
 import { Link, useLocation } from "react-router-dom";
 import LoginButton from "./Auth/Login";
+import { useAuth0 } from "@auth0/auth0-react";
 
 import NavProfile from "./Auth/NavProfile";
 // import Logo from "../assets/Images/Eduverse-logo.png";
@@ -11,6 +12,8 @@ const Navbar = () => {
   const location = useLocation();
   const hideSignIn =
     location.pathname === "/login" || location.pathname === "/signup";
+
+  const { isAuthenticated } = useAuth0();
 
   return (
     <motion.header
@@ -109,9 +112,23 @@ const Navbar = () => {
             
           )} */}
 
-          <div className="flex  items-center">
-            <NavProfile /> <LoginButton />
-          </div>
+          {!isAuthenticated && !hideSignIn && (
+            <motion.button
+              whileHover={{ scale: 1.05 }}
+              whileTap={{ scale: 0.95 }}
+              className="bg-white text-blue-500 px-4 py-2 rounded-lg shadow-lg hover:bg-blue-100"
+              style={{ textDecoration: "none" }}
+            >
+              <LoginButton />
+            </motion.button>
+          )}
+          {isAuthenticated && (
+            <div className="flex items-center">
+              <Link to="/profile">
+                <NavProfile />
+              </Link>
+            </div>
+          )}
         </div>
       </div>
     </motion.header>
