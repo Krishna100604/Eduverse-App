@@ -15,7 +15,6 @@ import ContactUs from "./Components/Contact/ContactUs";
 import AboutUs from "./Components/About/AboutUs";
 import Profile from "./Components/Profile/Profile";
 import Sidebar from "./Components/Sidebar/Sidebar";
-import LogoutButton from "./Components/Auth/Logout";
 
 const App = () => {
   const location = useLocation();

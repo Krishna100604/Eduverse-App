@@ -3,7 +3,7 @@ import React from "react";
 import { motion } from "framer-motion";
 import { Link, useLocation } from "react-router-dom";
 import LoginButton from "./Auth/Login";
-import LogoutButton from "./Auth/Logout";
+
 import NavProfile from "./Auth/NavProfile";
 // import Logo from "../assets/Images/Eduverse-logo.png";
 
