@@ -1,6 +1,5 @@
 import React from "react";
 
-// Define the CSS styles as a JavaScript object
 const loaderStyles = `
 .loader, .loader:before, .loader:after {
   border-radius: 50%;
@@ -39,7 +38,6 @@ const loaderStyles = `
 const Spinner = () => {
   return (
     <div>
-      {/* Inject the styles into the component */}
       <style>{loaderStyles}</style>
       <span className="loader"></span>
     </div>

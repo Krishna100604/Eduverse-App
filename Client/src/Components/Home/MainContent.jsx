@@ -3,6 +3,7 @@ import { motion } from "framer-motion";
 import Navbar from "../Navbar";
 import Sidebar from "../Sidebar/Sidebar";
 import Chatbot from "./chatbot";
+import Spinner from "../Spinner/Spinner";
 
 const MainContent = () => {
   return (
@@ -26,6 +27,7 @@ const MainContent = () => {
           <h1 className="text-4xl font-bold mb-4 text-center">
             Welcome to Eduverse!
           </h1>
+
           <p className="leading-relaxed text-center">
             Your ultimate learning assistant, designed to personalize your
             educational journey.

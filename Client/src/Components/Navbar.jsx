@@ -1,7 +1,7 @@
-// src/Components/Navbar.jsx
 import React, { useState } from "react";
 import { motion } from "framer-motion";
 import { Link, useLocation } from "react-router-dom";
+import { FaBars, FaTimes } from "react-icons/fa"; // Import icons
 import LoginButton from "./Auth/Login";
 import { useAuth0 } from "@auth0/auth0-react";
 
@@ -17,6 +17,7 @@ const Navbar = () => {
   const { isAuthenticated } = useAuth0();
 
   const [isProfileMenuOpen, setIsProfileMenuOpen] = useState(false);
+  const [isDropdownOpen, setIsDropdownOpen] = useState(false);
 
   const toggleProfileMenu = () => {
     setIsProfileMenuOpen(!isProfileMenuOpen);
@@ -25,6 +26,11 @@ const Navbar = () => {
   const closeProfileMenu = () => {
     setIsProfileMenuOpen(false);
   };
+
+  const toggleDropdown = () => {
+    setIsDropdownOpen(!isDropdownOpen);
+  };
+
   return (
     <motion.header
       initial={{ y: -100 }}
@@ -45,7 +51,7 @@ const Navbar = () => {
             Eduverse
           </motion.h1>
         </Link>
-        <div className="flex space-x-4">
+        <div className="hidden md:flex space-x-4">
           <motion.button
             whileHover={{ scale: 1.05 }}
             whileTap={{ scale: 0.95 }}
@@ -103,7 +109,51 @@ const Navbar = () => {
             <LoginButton />
           )}
         </div>
+        <div className="md:hidden flex items-center">
+          <button onClick={toggleDropdown} className="text-white text-xl">
+            {isDropdownOpen ? <FaTimes /> : <FaBars />}
+          </button>
+        </div>
       </div>
+      {isDropdownOpen && (
+        <div className="md:hidden bg-blue-500 flex flex-col items-start space-y-4 pl-4 py-4">
+          <Link
+            to="/"
+            className="text-white hover:text-gray-200"
+            onClick={toggleDropdown}
+          >
+            Home
+          </Link>
+          <Link
+            to="/about"
+            className="text-white hover:text-gray-200"
+            onClick={toggleDropdown}
+          >
+            About Us
+          </Link>
+          <Link
+            to="/contact"
+            className="text-white hover:text-gray-200"
+            onClick={toggleDropdown}
+          >
+            Contact
+          </Link>
+
+          {isAuthenticated ? (
+            <div className="mt-2">
+              <button onClick={toggleProfileMenu}>
+                <NavProfile />
+              </button>
+              <ProfileMenu
+                isOpen={isProfileMenuOpen}
+                onClose={closeProfileMenu}
+              />
+            </div>
+          ) : (
+            <LoginButton />
+          )}
+        </div>
+      )}
     </motion.header>
   );
 };

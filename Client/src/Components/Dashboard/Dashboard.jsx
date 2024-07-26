@@ -2,6 +2,7 @@ import React, { useState } from "react";
 import { motion } from "framer-motion";
 import { CircularProgressbar, buildStyles } from "react-circular-progressbar";
 import "react-circular-progressbar/dist/styles.css";
+import { useAuth0 } from "@auth0/auth0-react";
 import { Line, Bar } from "react-chartjs-2";
 import {
   Chart as ChartJS,
@@ -31,7 +32,7 @@ ChartJS.register(
 
 const Dashboard = () => {
   const [isSidebarOpen, setIsSidebarOpen] = useState(false);
-
+  const { user, isAuthenticated, isLoading } = useAuth0();
   // Example progress data
   const progress = 75; // 75% complete
 
@@ -123,7 +124,7 @@ const Dashboard = () => {
             className="bg-white rounded-lg shadow-lg p-6"
           >
             <h2 className="text-xl font-bold text-gray-800 mb-4">
-              Welcome Back, User!
+              Welcome Back, {user.name}!
             </h2>
             <p className="text-gray-600 leading-relaxed">
               Here's a brief overview of your learning progress and recent
