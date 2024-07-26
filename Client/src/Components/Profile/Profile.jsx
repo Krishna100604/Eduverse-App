@@ -3,6 +3,7 @@ import { Link } from "react-router-dom";
 import { FaBars, FaChartLine, FaChevronLeft, FaDashcube } from "react-icons/fa";
 import Sidebar from "../Sidebar/Sidebar"; // Import the Sidebar component
 import { useAuth0 } from "@auth0/auth0-react";
+import Spinner from "../Spinner/Spinner";
 
 const Profile = () => {
   const [isOpen, setIsOpen] = React.useState(false);
@@ -13,8 +14,14 @@ const Profile = () => {
   };
 
   if (isLoading) {
-    return <div>Loading...</div>;
+    return (
+      <div>
+        <Spinner />{" "}
+      </div>
+    );
   }
+
+  console.log(user);
 
   const defaultName = "Guest User";
   const defaultPicture = "https://via.placeholder.com/150";
