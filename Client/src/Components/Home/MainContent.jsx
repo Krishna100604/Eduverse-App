@@ -4,12 +4,52 @@ import Navbar from "../Navbar";
 import Sidebar from "../Sidebar/Sidebar";
 import Chatbot from "./chatbot";
 import Spinner from "../Spinner/Spinner";
+import homeImg from "../../images/home/home-5.png";
+import Button from "../UI/Button";
+import { useNavigate } from "react-router-dom";
+import { useAuth0 } from "@auth0/auth0-react";
 
 const MainContent = () => {
+  const navigate = useNavigate();
+  const { isAuthenticated, loginWithRedirect } = useAuth0();
+
+  const handleClick = () => {
+    if (isAuthenticated) {
+      navigate("/dashboard");
+    } else {
+      loginWithRedirect();
+    }
+  };
   return (
     <>
       <Navbar />
-      <Sidebar />
+      {/* Welcome Section */}
+
+      <div className="bg-[#f5ffee] justify-center items-center w-full h-screen flex flex-col md:flex-row">
+        <div className="w-full md:w-1/2">
+          <img
+            className="h-64 md:h-screen w-full object-contain"
+            src={homeImg}
+            alt=""
+          />
+        </div>
+        <div className="w-full md:w-1/2 p-5">
+          <h1 className="text-2xl md:text-5xl lg:text-6xl font-bold leading-relaxed mb-5">
+            Develop
+            <span className="bg-[#1da8e2] text-white rounded-full mx-1 px-2 md:px-4">
+              skills
+            </span>
+            from the best source
+          </h1>
+          <p className="my-3 text-sm ">
+            Our platform transforms traditional learning into an engaging and
+            rewarding experience by combining the best educational content with
+            innovative gamification techniques.
+          </p>
+
+          <Button onClick={handleClick} description={"Get Started"} />
+        </div>
+      </div>
 
       <motion.main
         initial={{ opacity: 0, y: 20 }}
@@ -17,50 +57,6 @@ const MainContent = () => {
         transition={{ duration: 0.6 }}
         className="container mx-auto mt-20 px-4 pt-7"
       >
-        {/* Welcome Section */}
-        <motion.section
-          initial={{ opacity: 0, y: 20 }}
-          animate={{ opacity: 1, y: 0 }}
-          transition={{ delay: 0.2, duration: 0.6 }}
-          className="bg-gradient-to-r from-blue-500 to-indigo-600 text-white rounded-lg shadow-lg p-8 mb-8"
-        >
-          <h1 className="text-4xl font-bold mb-4 text-center">
-            Welcome to Eduverse!
-          </h1>
-
-          <p className="leading-relaxed text-center">
-            Your ultimate learning assistant, designed to personalize your
-            educational journey.
-          </p>
-        </motion.section>
-
-        {/* What is Eduverse Section */}
-        <motion.section
-          initial={{ opacity: 0, y: 20 }}
-          animate={{ opacity: 1, y: 0 }}
-          transition={{ delay: 0.4, duration: 0.6 }}
-          className="bg-white rounded-lg shadow-lg p-8 mb-8"
-        >
-          <h2 className="text-2xl font-bold text-gray-800 mb-4">
-            What is Eduverse?
-          </h2>
-          <p className="text-gray-600 leading-relaxed font-bold">
-            Eduverse is your personalized learning assistant that adapts to your
-            learning style and helps you discover educational resources tailored
-            to your needs.
-          </p>
-          <p className="text-gray-600 leading-relaxed mt-4 font-bold">
-            Whether you're a student preparing for exams, a professional seeking
-            to upskill, or an educator looking to enhance teaching methods,
-            Eduverse offers a platform designed to meet your learning goals.
-          </p>
-          <p className="text-gray-600 leading-relaxed mt-4 font-bold">
-            With Eduverse, you get access to a vast library of educational
-            content, interactive tools, and personalized learning paths that
-            make learning more effective and enjoyable.
-          </p>
-        </motion.section>
-
         {/* Why Choose Eduverse Section */}
         <motion.section
           initial={{ opacity: 0, y: 20 }}

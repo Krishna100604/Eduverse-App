@@ -25,7 +25,9 @@ const NavProfile = () => {
           src={user.picture}
           alt={getFirstName(user.name)}
         />
-        <p className="text-white mr-2">{getFirstName(user.name)}</p>
+        <p className="text-[#1da8e2] hover:text-blue-600 mr-2">
+          {getFirstName(user.name)}
+        </p>
       </div>
     )
   );

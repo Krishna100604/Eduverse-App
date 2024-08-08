@@ -1,7 +1,7 @@
 import React, { useState } from "react";
 import { motion } from "framer-motion";
 import { Link, useLocation } from "react-router-dom";
-import { FaBars, FaTimes } from "react-icons/fa"; // Import icons
+import { FaBars, FaTimes } from "react-icons/fa";
 import LoginButton from "./Auth/Login";
 import { useAuth0 } from "@auth0/auth0-react";
 
@@ -36,10 +36,10 @@ const Navbar = () => {
       initial={{ y: -100 }}
       animate={{ y: 0 }}
       transition={{ type: "just", stiffness: 100 }}
-      className="bg-blue-500 py-2 fixed top-0 left-0 w-full z-10 shadow-lg"
+      className="bg-[#f5ffee] py-2 fixed top-0 left-0 w-full z-10 "
     >
       <div className="container mx-auto flex justify-between items-center px-4">
-        <Link to="/" className="flex items-center space-x-2 text-white">
+        <Link to="/" className="flex items-center space-x-2 text-[#1da8e2]">
           {/* <img src={Logo} alt="Eduverse" className="h-15 w-12 size-15 " /> */}
           <motion.h1
             initial={{ opacity: 0, y: -10 }}
@@ -60,7 +60,7 @@ const Navbar = () => {
           >
             <Link
               to="/"
-              className="text-white"
+              className="text-[#1da8e2]"
               style={{ textDecoration: "none" }}
             >
               Home
@@ -74,7 +74,7 @@ const Navbar = () => {
           >
             <Link
               to="/about"
-              className="text-white"
+              className="text-[#1da8e2]"
               style={{ textDecoration: "none" }}
             >
               About Us
@@ -88,7 +88,7 @@ const Navbar = () => {
           >
             <Link
               to="/contact"
-              className="text-white"
+              className="text-[#1da8e2]"
               style={{ textDecoration: "none" }}
             >
               Contact
@@ -116,24 +116,24 @@ const Navbar = () => {
         </div>
       </div>
       {isDropdownOpen && (
-        <div className="md:hidden bg-blue-500 flex flex-col items-start space-y-4 pl-4 py-4">
+        <div className="md:hidden bg-[#f5ffee] flex flex-col items-start space-y-4 pl-4 py-4">
           <Link
             to="/"
-            className="text-white hover:text-gray-200"
+            className="text-[#1da8e2]  hover:text-blue-600"
             onClick={toggleDropdown}
           >
             Home
           </Link>
           <Link
             to="/about"
-            className="text-white hover:text-gray-200"
+            className="text-[#1da8e2]  hover:text-blue-600"
             onClick={toggleDropdown}
           >
             About Us
           </Link>
           <Link
             to="/contact"
-            className="text-white hover:text-gray-200"
+            className="text-[#1da8e2] hover:text-blue-600"
             onClick={toggleDropdown}
           >
             Contact
