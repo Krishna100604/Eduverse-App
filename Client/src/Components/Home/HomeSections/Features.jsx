@@ -26,7 +26,6 @@ const Features = () => {
               our interactive environment ensures that learning is not just
               effective but also fun.
             </p>
-            <Button onClick={""} description={"View all courses"} />
           </div>
         </div>
 

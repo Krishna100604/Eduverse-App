@@ -71,13 +71,17 @@ const Testimonial = () => {
 
   return (
     <div className="text-center px-8 py-16 bg-white">
-      <h2 className="text-4xl font-bold text-[#1e1e5c] mb-4">
-        We are loved by 2000+ learners
+      <h2 className="text-2xl text-[#1e1e5c] sm:text-3xl md:text-4xl lg:text-5xl font-bold leading-tight mb-4 sm:mb-5">
+        We are loved by
+        <span className="bg-[#1e1e5c] text-white rounded-full px-2 sm:px-3 lg:px-4 mx-1">
+          2000+
+        </span>{" "}
+        learners
       </h2>
       <p className="text-gray-700 leading-relaxed mb-12 max-w-2xl mx-auto">
-        With high social media impact levels, video content has become extremely
-        popular among users. People of almost all age groups and interests have
-        become used to video content.
+        Lorem ipsum dolor sit amet consectetur adipisicing elit. Rem facere
+        quibusdam quia hic fugiat unde illum autem, laudantium eius suscipit est
+        ipsum dignissimos quod corporis et eaque beatae! Ipsa, minus?
       </p>
       <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-8">
         {testimonials.map((testimonial, index) => (
