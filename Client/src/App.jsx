@@ -22,24 +22,19 @@ const App = () => {
   const [isSidebarOpen, setIsSidebarOpen] = useState(false);
 
   return (
-    <div className="bg-gray-100 min-h-screen">
-      {/* {showNavbar && <Navbar />} */}
+    <>
+      <Routes>
+        <Route path="/" element={<MainContent />} />
+        <Route path="/dashboard" element={<Dashboard />} />
+        <Route path="/login" element={<Login />} />
+        <Route path="/signup" element={<SignUp />} />
+        <Route path="/contact" element={<ContactUs />} />
+        <Route path="/about" element={<AboutUs />} />
+        <Route path="/profile" element={<Profile />} />
+      </Routes>
 
-      <div className="flex">
-        <div className="flex-1">
-          <Routes>
-            <Route path="/" element={<MainContent />} />
-            <Route path="/dashboard" element={<Dashboard />} />
-            <Route path="/login" element={<Login />} />
-            <Route path="/signup" element={<SignUp />} />
-            <Route path="/contact" element={<ContactUs />} />
-            <Route path="/about" element={<AboutUs />} />
-            <Route path="/profile" element={<Profile />} />
-          </Routes>
-        </div>
-      </div>
-      {showNavbar && <Footer />}
-    </div>
+      <Footer />
+    </>
   );
 };
 

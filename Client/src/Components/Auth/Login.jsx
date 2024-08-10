@@ -90,7 +90,7 @@ const LoginButton = () => {
 
   return (
     <button
-      className="bg-white rounded-lg text-sky-600 px-2 py-1"
+      className="bg-[#1da8e2] rounded-lg text-white px-2 py-1"
       onClick={() => loginWithRedirect()}
     >
       Log In
