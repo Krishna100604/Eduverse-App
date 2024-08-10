@@ -43,18 +43,20 @@ const Courses = () => {
           {items.map((item, index) => (
             <div
               key={index}
-              className="bg-white transform hover:scale-105 transition-transform shadow-md rounded-lg p-5"
+              className="bg-white shadow-lg border border-gray-400  transform hover:scale-105 transition-transform  rounded-lg "
             >
               <img
                 src={item.imgSrc}
                 alt={item.heading}
-                className="rounded-lg mb-5 w-full h-48 object-cover"
+                className="mb-5 w-full h-48 object-cover"
               />
-              <h2 className="text-xl font-semibold mb-3">{item.heading}</h2>
-              <p className="text-gray-600 mb-5">{item.description}</p>
-              <button className="bg-[#f1aa2b] text-white px-4 py-2 rounded hover:bg-amber-600">
-                {item.buttonText}
-              </button>
+              <div className="p-5">
+                <h2 className="text-xl font-semibold mb-3">{item.heading}</h2>
+                <p className="text-gray-600 mb-5">{item.description}</p>
+                <button className="bg-[#f1aa2b] text-white px-4 py-2 rounded hover:bg-amber-600">
+                  {item.buttonText}
+                </button>
+              </div>
             </div>
           ))}
         </div>
