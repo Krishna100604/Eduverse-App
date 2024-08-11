@@ -4,6 +4,14 @@ import ContentSkeleton from "../../Loading/Skeleton/ContentSkeleton";
 
 const About = () => {
   const [loading, setLoading] = useState(true);
+  useEffect(() => {
+    const timer = setTimeout(() => {
+      setLoading(false);
+    }, 500);
+
+    // Cleanup timer on component unmount
+    return () => clearTimeout(timer);
+  }, []);
 
   return (
     <>

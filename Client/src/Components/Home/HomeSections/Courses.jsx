@@ -1,6 +1,6 @@
 import React, { useEffect, useState } from "react";
-import Grid from "../../UI/Grid";
-import Button from "../../UI/Button";
+import Grid from "../../ReusableComponents/Grid";
+import Button from "../../ReusableComponents/Button";
 import ContentSkeleton from "../../Loading/Skeleton/ContentSkeleton";
 import CardSkeleton from "../../Loading/Skeleton/CardSkeleton";
 

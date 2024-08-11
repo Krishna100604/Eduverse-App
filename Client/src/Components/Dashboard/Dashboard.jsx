@@ -3,6 +3,10 @@ import { motion } from "framer-motion";
 import { CircularProgressbar, buildStyles } from "react-circular-progressbar";
 import "react-circular-progressbar/dist/styles.css";
 import { useAuth0 } from "@auth0/auth0-react";
+import { DemoContainer } from "@mui/x-date-pickers/internals/demo";
+import { LocalizationProvider } from "@mui/x-date-pickers-pro/LocalizationProvider";
+import { AdapterDayjs } from "@mui/x-date-pickers-pro/AdapterDayjs";
+import { DateRangeCalendar } from "@mui/x-date-pickers-pro/DateRangeCalendar";
 import { Line, Bar } from "react-chartjs-2";
 import {
   Chart as ChartJS,
@@ -17,6 +21,7 @@ import {
 } from "chart.js";
 import { FaBullhorn, FaBook, FaTrophy, FaBars, FaTimes } from "react-icons/fa";
 import Sidebar from "../Sidebar/Sidebar";
+import Calendar from "../ReusableComponents/Calender";
 
 // Register Chart.js components
 ChartJS.register(
@@ -34,7 +39,7 @@ const Dashboard = () => {
   const [isSidebarOpen, setIsSidebarOpen] = useState(false);
   const { user, isAuthenticated, isLoading } = useAuth0();
   // Example progress data
-  const progress = 75; // 75% complete
+  const progress = 55; // 75% complete
 
   // Data for Line Chart
   const lineData = {
@@ -75,7 +80,7 @@ const Dashboard = () => {
   };
 
   return (
-    <div className="flex min-h-screen bg-gray-100 relative">
+    <div className="flex min-h-screen px-5 bg-[#fbf8f6] relative">
       <Sidebar
         isOpen={isSidebarOpen}
         toggleSidebar={() => setIsSidebarOpen(false)}
@@ -94,12 +99,12 @@ const Dashboard = () => {
         >
           <FaBars />
         </button>
-        <h1 className="text-4xl font-bold text-gray-800 mb-8 text-center">
-          Dashboard
+        <h1 className="text-2xl sm:text-3xl md:text-4xl lg:text-5xl  font-bold text-gray-800 mb-8 text-center">
+          Your Dashboard
         </h1>
 
         {/* Announcement Banner */}
-        <motion.div
+        {/* <motion.div
           initial={{ opacity: 0, y: -20 }}
           animate={{ opacity: 1, y: 0 }}
           transition={{ duration: 0.6 }}
@@ -112,82 +117,97 @@ const Dashboard = () => {
               "Recommended Courses" section.
             </p>
           </div>
-        </motion.div>
+        </motion.div> */}
 
-        <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
-          {/* Welcome Card */}
-          <motion.div
-            custom={0.2}
-            initial="hidden"
-            animate="visible"
-            variants={sectionVariants}
-            className="bg-white rounded-lg shadow-lg p-6"
-          >
-            <h2 className="text-xl font-bold text-gray-800 mb-4">
-              Welcome Back, {user.name}!
-            </h2>
-            <p className="text-gray-600 leading-relaxed">
-              Here's a brief overview of your learning progress and recent
-              activities.
-            </p>
-          </motion.div>
+        {/* Welcome Card */}
+        <h2 className="text-xl font-bold text-gray-800 mb-4">
+          Welcome, {user.name}!
+        </h2>
 
-          {/* Progress Overview */}
-          <motion.div
-            custom={0.4}
-            initial="hidden"
-            animate="visible"
-            variants={sectionVariants}
-            className="bg-white rounded-lg shadow-lg p-6"
-          >
-            <h2 className="text-xl font-bold text-gray-800 mb-4">
-              Progress Overview
-            </h2>
-            <div className="flex justify-center">
-              <CircularProgressbar
-                value={progress}
-                text={`${progress}%`}
-                styles={buildStyles({
-                  textSize: "16px",
-                  pathColor: `rgba(62, 152, 199, ${progress / 100})`,
-                  textColor: "#3e98c7",
-                  trailColor: "#d6d6d6",
-                  backgroundColor: "#3e98c7",
-                })}
-              />
+        <div>
+          <h3>Your enrolled courses</h3>
+          <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
+            <div className="grid grid-cols-2 gap-6 p-8 ">
+              <div className="bg-[#f3c5c5] rounded-3xl p-6 shadow-md">
+                <h2 className="text-xl font-bold">Item 1</h2>
+                <p className="mt-4 text-gray-700">This is the first item.</p>
+              </div>
+              <div className="bg-[#fae0c1] rounded-3xl p-6 shadow-md">
+                <h2 className="text-xl font-bold">Item 2</h2>
+                <p className="mt-4 text-gray-700">This is the second item.</p>
+              </div>
+              <div className="bg-[#d5d2fe] rounded-3xl p-6 shadow-md">
+                <h2 className="text-xl font-bold">Item 3</h2>
+                <p className="mt-4 text-gray-700">This is the third item.</p>
+              </div>
+              <div className="bg-[#bff0db] rounded-3xl p-6 shadow-md">
+                <h2 className="text-xl font-bold">Item 4</h2>
+                <p className="mt-4 text-gray-700">This is the fourth item.</p>
+              </div>
             </div>
-            <p className="text-gray-600 leading-relaxed mt-4">
-              Track your progress and see how far you've come in your learning
-              journey.
-            </p>
-          </motion.div>
 
-          {/* Recommended Courses */}
-          <motion.div
-            custom={0.6}
-            initial="hidden"
-            animate="visible"
-            variants={sectionVariants}
-            className="bg-white rounded-lg shadow-lg p-6"
-          >
-            <h2 className="text-xl font-bold text-gray-800 mb-4">
-              Recommended Courses
-            </h2>
-            <ul className="text-gray-600 leading-relaxed">
-              <li>
-                <FaBook className="inline mr-2" /> Course 1: Introduction to
-                Data Science
-              </li>
-              <li>
-                <FaBook className="inline mr-2" /> Course 2: Advanced JavaScript
-              </li>
-              <li>
-                <FaBook className="inline mr-2" /> Course 3: Web Development
-                Bootcamp
-              </li>
-            </ul>
-          </motion.div>
+            <div>
+              <LocalizationProvider dateAdapter={AdapterDayjs}>
+                <DateRangeCalendar calendars={1} />
+              </LocalizationProvider>
+            </div>
+            {/* Progress Overview */}
+
+            <motion.div
+              custom={0.4}
+              initial="hidden"
+              animate="visible"
+              variants={sectionVariants}
+              className="bg-white rounded-lg shadow-lg p-6"
+            >
+              <h2 className="text-xl font-bold text-gray-800 mb-4">
+                Progress Overview
+              </h2>
+              <div className="flex justify-center h-1/2">
+                <CircularProgressbar
+                  value={progress}
+                  text={`${progress}%`}
+                  styles={buildStyles({
+                    textSize: "16px",
+                    pathColor: `rgba(62, 152, 199, ${progress / 100})`,
+                    textColor: "#3e98c7",
+                    trailColor: "#d6d6d6",
+                    backgroundColor: "#3e98c7",
+                  })}
+                />
+              </div>
+              <p className="text-gray-600 leading-relaxed mt-4">
+                Track your progress and see how far you've come.
+              </p>
+            </motion.div>
+          </div>
         </div>
+
+        {/* Recommended Courses */}
+        <motion.div
+          custom={0.6}
+          initial="hidden"
+          animate="visible"
+          variants={sectionVariants}
+          className="bg-white rounded-lg shadow-lg p-6"
+        >
+          <h2 className="text-xl font-bold text-gray-800 mb-4">
+            Recommended Courses
+          </h2>
+          <ul className="text-gray-600 leading-relaxed">
+            <li>
+              <FaBook className="inline mr-2" /> Course 1: Introduction to Data
+              Science
+            </li>
+            <li>
+              <FaBook className="inline mr-2" /> Course 2: Advanced JavaScript
+            </li>
+            <li>
+              <FaBook className="inline mr-2" /> Course 3: Web Development
+              Bootcamp
+            </li>
+          </ul>
+        </motion.div>
 
         {/* Visualize Your Learning */}
         <motion.section

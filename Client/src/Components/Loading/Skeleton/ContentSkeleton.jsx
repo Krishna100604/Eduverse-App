@@ -7,6 +7,8 @@ export default function ContentSkeleton({ width = 300, height = 40 }) {
     <Box sx={{ width }}>
       <Skeleton height={height} />
       <Skeleton height={height} animation="wave" />
+      <Skeleton height={height} animation="wave" />
+      <Skeleton height={height} animation="wave" />
       <Skeleton height={height} animation={false} />
     </Box>
   );

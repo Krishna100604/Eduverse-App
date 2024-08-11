@@ -2,7 +2,7 @@ import React, { useState, useEffect } from "react";
 import Navbar from "../Navbar";
 import Chatbot from "./chatbot";
 import homeImg from "../../images/home/home-5.png";
-import Button from "../UI/Button";
+import Button from "../ReusableComponents/Button";
 import { useNavigate } from "react-router-dom";
 import { useAuth0 } from "@auth0/auth0-react";
 import About from "./HomeSections/About";
