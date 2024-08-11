@@ -1,6 +1,6 @@
 import { useAuth0 } from "@auth0/auth0-react";
 import React from "react";
-import Spinner from "../Spinner/Spinner";
+import Spinner from "../Loading/Spinner";
 
 const NavProfile = () => {
   const { user, isAuthenticated, isLoading } = useAuth0();

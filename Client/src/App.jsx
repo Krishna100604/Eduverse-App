@@ -14,13 +14,9 @@ import SignUp from "./Components/Auth/Signup";
 import ContactUs from "./Components/Contact/ContactUs";
 import AboutUs from "./Components/About/AboutUs";
 import Profile from "./Components/Profile/Profile";
-import Sidebar from "./Components/Sidebar/Sidebar";
+
 import "./App.css";
 const App = () => {
-  const location = useLocation();
-  const showNavbar = location.pathname !== "/dashboard";
-  const [isSidebarOpen, setIsSidebarOpen] = useState(false);
-
   return (
     <>
       <Routes>
