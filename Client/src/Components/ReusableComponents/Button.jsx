@@ -9,7 +9,7 @@ const Button = ({ description, onClick }) => {
         boxShadow: "0px 4px 0px #F97316, 2px 7px 0px #6B21A8", // orange shadow first, then purple
       }}
     >
-      {description}
+      <p className="text-sm md:text-base"> {description}</p>
     </button>
   );
 };

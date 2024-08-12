@@ -36,6 +36,8 @@ import Tab from "@mui/material/Tab";
 import TabPanel from "@mui/lab/TabPanel";
 import TabContext from "@mui/lab/TabContext";
 import Alert from "@mui/material/Alert";
+import Button from "../ReusableComponents/Button";
+import { useNavigate } from "react-router-dom";
 
 // Register Chart.js components
 ChartJS.register(
@@ -58,7 +60,10 @@ const Dashboard = () => {
   const handleChange = (event, newValue) => {
     setValue(newValue);
   };
-  const userName = user.name || "user";
+  const defaultName = "Guest User";
+  const defaultPicture = "https://via.placeholder.com/150";
+
+  const navigate = useNavigate();
   // Example progress data
   const progress = 55; // 75% complete
 
@@ -100,6 +105,10 @@ const Dashboard = () => {
     }),
   };
 
+  const handleClick = () => {
+    navigate("/profile");
+  };
+
   return (
     <div className="flex min-h-screen px-5 bg-[#fbf8f6] relative">
       <Sidebar
@@ -125,10 +134,26 @@ const Dashboard = () => {
           <h1 className="text-2xl sm:text-3xl md:text-4xl  font-semibold text-gray-800 mb-8 text-center">
             Your Dashboard
           </h1>
-          <div className="h-10 bg-purple-300 rounded-3xl p-4">
-            <h2 className="text-xl font-bold text-gray-800 mb-4">
-              {userName}!
-            </h2>
+          <div className="flex bg-purple-200 rounded-3xl px-4 py-7 ">
+            <img
+              className="h-10 rounded-full mr-2 "
+              src={(isAuthenticated && user.picture) || defaultPicture}
+              alt={(isAuthenticated && user.name) || defaultName}
+            />
+            <div>
+              <h2 className="text-base font-bold text-gray-800 ">
+                {(isAuthenticated && user.name) || defaultName}
+              </h2>{" "}
+              <p>
+                {isAuthenticated && (
+                  <p className="text-gray-600 text-xs md:text-sm mb-4">
+                    {" "}
+                    {user.email}
+                  </p>
+                )}
+              </p>
+              <Button onClick={handleClick} description={"My Profile"} />
+            </div>
           </div>
         </div>
 
