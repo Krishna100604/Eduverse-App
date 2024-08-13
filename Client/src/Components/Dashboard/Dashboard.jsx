@@ -41,6 +41,7 @@ import { useNavigate } from "react-router-dom";
 import CardSkeleton from "../Loading/Skeleton/CardSkeleton";
 import ContentSkeleton from "../Loading/Skeleton/ContentSkeleton";
 import ElementSkeleton from "../Loading/Skeleton/ElementSkeleton";
+import CourseCard from "../ReusableComponents/CourseCard";
 
 // Register Chart.js components
 ChartJS.register(
@@ -215,97 +216,43 @@ const Dashboard = () => {
                 <CardSkeleton />
               ) : (
                 <>
-                  <div className="items-center justify-center">
+                  <div className="items-center justify-center ">
                     {/* <h3>Your enrolled courses</h3> */}
                     <div className="grid grid-cols-1 md:grid-cols-3 gap-2">
-                      <div className="grid grid-cols-2 gap-4 p-2 rounded-3xl ">
-                        <div className="bg-[#f3c5c5] rounded-3xl p-6 shadow-md">
-                          <div className="flex justify-between items-center">
-                            <div className="flex items-center ">
-                              <div className=" bg-white p-1 rounded-full ">
-                                <FaBook />
-                              </div>
-                              <p className="text-xs ml-1">course category</p>
-                            </div>
+                      <div className="bg-[#f3ebe5] p-5 rounded-xl mt-10 text-base sm:text-xl md:text-2xl lg:text-3xl font-semibold text-gray-800 mb-8 ">
+                        <h2 className="text-xl md:text-2xl text-center my-5">
+                          Your enrolled Courses
+                        </h2>
 
-                            <div className="flex items-center text-xs bg-white p-1 rounded-3xl">
-                              <StarIcon fontSize="10px" />
-                              4.5
-                            </div>
-                          </div>
-                          <h2 className="text-xl font-bold mt-2">
-                            Course Name
-                          </h2>
-                          <p className="mt-4  text-xs">
-                            {" "}
-                            800+ students enrolled.
-                          </p>
-                        </div>
-                        <div className="bg-[#fae0c1] rounded-3xl p-6 shadow-md">
-                          <div className="flex justify-between items-center">
-                            <div className="flex items-center ">
-                              <div className=" bg-white p-1 rounded-full ">
-                                <FaBook />
-                              </div>
-                              <p className="text-xs ml-1">course category</p>
-                            </div>
-
-                            <div className="flex items-center text-xs bg-white p-1 rounded-3xl">
-                              <StarIcon fontSize="10px" />
-                              4.5
-                            </div>
-                          </div>
-                          <h2 className="text-xl font-bold mt-2">
-                            Course Name
-                          </h2>
-                          <p className="mt-4  text-xs">
-                            {" "}
-                            800+ students enrolled.
-                          </p>
-                        </div>
-                        <div className="bg-[#d5d2fe] rounded-3xl p-6 shadow-md">
-                          <div className="flex justify-between items-center">
-                            <div className="flex items-center ">
-                              <div className=" bg-white p-1 rounded-full ">
-                                <FaBook />
-                              </div>
-                              <p className="text-xs ml-1">course category</p>
-                            </div>
-
-                            <div className="flex items-center text-xs bg-white p-1 rounded-3xl">
-                              <StarIcon fontSize="10px" />
-                              4.5
-                            </div>
-                          </div>
-                          <h2 className="text-xl font-bold mt-2">
-                            Course Name
-                          </h2>
-                          <p className="mt-4  text-xs">
-                            {" "}
-                            800+ students enrolled.
-                          </p>
-                        </div>
-                        <div className="bg-[#bff0db] rounded-3xl p-6 shadow-md">
-                          <div className="flex justify-between items-center">
-                            <div className="flex items-center ">
-                              <div className=" bg-white p-1 rounded-full ">
-                                <FaBook />
-                              </div>
-                              <p className="text-xs ml-1">course category</p>
-                            </div>
-
-                            <div className="flex items-center text-xs bg-white p-1 rounded-3xl">
-                              <StarIcon fontSize="10px" />
-                              4.5
-                            </div>
-                          </div>
-                          <h2 className="text-xl font-bold mt-2">
-                            Course Name
-                          </h2>
-                          <p className="mt-4  text-xs">
-                            {" "}
-                            800+ students enrolled.
-                          </p>
+                        <div className="grid grid-cols-2 gap-4 p-2 rounded-3xl">
+                          <CourseCard
+                            bgColor="bg-[#f3c5c5]"
+                            courseCategory="Course Category"
+                            rating="4.5"
+                            courseName="Course Name"
+                            studentsEnrolled="800+"
+                          />
+                          <CourseCard
+                            bgColor="bg-[#fae0c1]"
+                            courseCategory="Course Category"
+                            rating="4.5"
+                            courseName="Course Name"
+                            studentsEnrolled="800+"
+                          />
+                          <CourseCard
+                            bgColor="bg-[#d5d2fe]"
+                            courseCategory="Course Category"
+                            rating="4.5"
+                            courseName="Course Name"
+                            studentsEnrolled="800+"
+                          />
+                          <CourseCard
+                            bgColor="bg-[#bff0db]"
+                            courseCategory="Course Category"
+                            rating="4.5"
+                            courseName="Course Name"
+                            studentsEnrolled="800+"
+                          />
                         </div>
                       </div>
 
@@ -327,6 +274,8 @@ const Dashboard = () => {
                         <h2 className="text-base md:text-xl text-center font-bold  mb-4">
                           Progress Overview
                         </h2>
+
+                        <p className="text-sm m-2">Total hourse spent - {}</p>
                         <div className="flex justify-center h-1/2">
                           <CircularProgressbar
                             value={progress}
@@ -406,80 +355,40 @@ const Dashboard = () => {
             </TabPanel>
             <TabPanel value="2">
               {" "}
-              <div className=" bg-[#f3ebe5]  p-5  rounded-xl mt-10 text-base sm:text-xl md:text-2xl lg:text-3xl font-semibold text-gray-800 mb-8 ">
+              <div className="bg-[#f3ebe5] p-5 rounded-xl mt-10 text-base sm:text-xl md:text-2xl lg:text-3xl font-semibold text-gray-800 mb-8">
                 <h2 className="text-center my-5">
                   Recommended Courses For You
                 </h2>
 
-                <div className="grid grid-cols-2 gap-4 p-2 rounded-3xl ">
-                  <div className="bg-[#f3c5c5] rounded-3xl p-6 shadow-md">
-                    <div className="flex justify-between items-center">
-                      <div className="flex items-center ">
-                        <div className=" bg-white p-1 rounded-full ">
-                          <FaBook />
-                        </div>
-                        <p className="text-xs ml-1">course category</p>
-                      </div>
-
-                      <div className="flex items-center text-xs bg-white p-1 rounded-3xl">
-                        <StarIcon fontSize="10px" />
-                        4.5
-                      </div>
-                    </div>
-                    <h2 className="text-xl font-bold mt-2">Course Name</h2>
-                    <p className="mt-4  text-xs"> 800+ students enrolled.</p>
-                  </div>
-                  <div className="bg-[#fae0c1] rounded-3xl p-6 shadow-md">
-                    <div className="flex justify-between items-center">
-                      <div className="flex items-center ">
-                        <div className=" bg-white p-1 rounded-full ">
-                          <FaBook />
-                        </div>
-                        <p className="text-xs ml-1">course category</p>
-                      </div>
-
-                      <div className="flex items-center text-xs bg-white p-1 rounded-3xl">
-                        <StarIcon fontSize="10px" />
-                        4.5
-                      </div>
-                    </div>
-                    <h2 className="text-xl font-bold mt-2">Course Name</h2>
-                    <p className="mt-4  text-xs"> 800+ students enrolled.</p>
-                  </div>
-                  <div className="bg-[#d5d2fe] rounded-3xl p-6 shadow-md">
-                    <div className="flex justify-between items-center">
-                      <div className="flex items-center ">
-                        <div className=" bg-white p-1 rounded-full ">
-                          <FaBook />
-                        </div>
-                        <p className="text-xs ml-1">course category</p>
-                      </div>
-
-                      <div className="flex items-center text-xs bg-white p-1 rounded-3xl">
-                        <StarIcon fontSize="10px" />
-                        4.5
-                      </div>
-                    </div>
-                    <h2 className="text-xl font-bold mt-2">Course Name</h2>
-                    <p className="mt-4  text-xs"> 800+ students enrolled.</p>
-                  </div>
-                  <div className="bg-[#bff0db] rounded-3xl p-6 shadow-md">
-                    <div className="flex justify-between items-center">
-                      <div className="flex items-center ">
-                        <div className=" bg-white p-1 rounded-full ">
-                          <FaBook />
-                        </div>
-                        <p className="text-xs ml-1">course category</p>
-                      </div>
-
-                      <div className="flex items-center text-xs bg-white p-1 rounded-3xl">
-                        <StarIcon fontSize="10px" />
-                        4.5
-                      </div>
-                    </div>
-                    <h2 className="text-xl font-bold mt-2">Course Name</h2>
-                    <p className="mt-4  text-xs"> 800+ students enrolled.</p>
-                  </div>
+                <div className="grid grid-cols-2 gap-4 p-2 rounded-3xl">
+                  <CourseCard
+                    bgColor="bg-[#f3c5c5]"
+                    courseCategory="Course Category"
+                    rating="4.5"
+                    courseName="Course Name"
+                    studentsEnrolled="800+"
+                  />
+                  <CourseCard
+                    bgColor="bg-[#fae0c1]"
+                    courseCategory="Course Category"
+                    rating="4.5"
+                    courseName="Course Name"
+                    studentsEnrolled="800+"
+                  />
+                  <CourseCard
+                    bgColor="bg-[#d5d2fe]"
+                    courseCategory="Course Category"
+                    rating="4.5"
+                    courseName="Course Name"
+                    studentsEnrolled="800+"
+                  />
+                  <CourseCard
+                    bgColor="bg-[#bff0db]"
+                    courseCategory="Course Category"
+                    rating="4.5"
+                    courseName="Course Name"
+                    studentsEnrolled="800+"
+                  />
                 </div>
               </div>
             </TabPanel>
