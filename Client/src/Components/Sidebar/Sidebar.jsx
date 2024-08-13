@@ -7,6 +7,7 @@ import {
   FaUsers,
   FaTimes,
   FaUser,
+  FaInfo,
 } from "react-icons/fa";
 import { motion } from "framer-motion";
 import LogoutButton from "../Auth/LogOut";
@@ -20,8 +21,8 @@ const Sidebar = ({ isOpen, toggleSidebar }) => {
     <motion.aside
       initial={{ x: -250 }}
       animate={{ x: isOpen ? 0 : -250 }}
-      transition={{ type: "just", stiffness: 100 }}
-      className="bg-white bg-opacity-60 backdrop-blur-lg fixed top-0 left-0 h-full w-64 p-6 shadow-lg z-20 "
+      transition={{ type: "tween", stiffness: 100 }}
+      className="bg-[#f3ebe5]  bg-opacity-60 backdrop-blur-lg fixed top-0 left-0 h-full w-64 p-6 shadow-lg z-20 "
     >
       {/* Close button */}
       <button
@@ -32,44 +33,44 @@ const Sidebar = ({ isOpen, toggleSidebar }) => {
       </button>
 
       {/* Navigation links */}
-      <nav className="space-y-4 mt-10">
+      <nav className="space-y-1 mt-10">
         <Link
           to="/"
-          className="flex items-center text-gray-700 hover:text-blue-500"
+          className="flex items-center  px-4 py-2 hover:rounded-3xl hover:font-semibold hover:bg-white"
         >
-          <FaHome className="mr-3" />
+          <FaHome size={18} className="mr-3" />
           Home
         </Link>
         <Link
           to="/dashboard"
-          className="flex items-center text-gray-700 hover:text-blue-500"
+          className="flex items-center  px-4 py-2 hover:rounded-3xl hover:font-semibold hover:bg-white"
         >
           <MdDashboard className="mr-3" />
           Dashboard
         </Link>
         <Link
           to="/about"
-          className="flex items-center text-gray-700 hover:text-blue-500"
+          className="flex items-center  px-4 py-2 hover:rounded-3xl hover:font-semibold hover:bg-white"
         >
-          <FaChalkboardTeacher className="mr-3" />
+          <FaInfo className="mr-3" />
           About Us
         </Link>
         <Link
           to="/contact"
-          className="flex items-center text-gray-700 hover:text-blue-500"
+          className="flex items-center  px-4 py-2 hover:rounded-3xl hover:font-semibold hover:bg-white"
         >
           <FaUsers className="mr-3" />
           Contact Us
         </Link>
         <Link
           to="/profile"
-          className="flex items-center text-gray-700 hover:text-blue-500"
+          className="flex items-center  px-4 py-2 hover:rounded-3xl hover:font-semibold hover:bg-white"
         >
           <FaUser className="mr-3" />
           Profile
         </Link>
 
-        <div className="flex items-center text-gray-700 hover:text-blue-500">
+        <div className="flex items-center  px-4 py-2 hover:rounded-3xl hover:font-semibold hover:text-white hover:bg-red-400">
           {/* <CiLogout size={17} className="mr-3" /> */}
           <IoLogOut size={20} className="mr-2" /> <LogoutButton />
         </div>
