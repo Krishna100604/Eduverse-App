@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import Box from "@mui/material/Box";
 
 import { motion } from "framer-motion";
@@ -38,6 +38,9 @@ import TabContext from "@mui/lab/TabContext";
 import Alert from "@mui/material/Alert";
 import Button from "../ReusableComponents/Button";
 import { useNavigate } from "react-router-dom";
+import CardSkeleton from "../Loading/Skeleton/CardSkeleton";
+import ContentSkeleton from "../Loading/Skeleton/ContentSkeleton";
+import ElementSkeleton from "../Loading/Skeleton/ElementSkeleton";
 
 // Register Chart.js components
 ChartJS.register(
@@ -52,6 +55,7 @@ ChartJS.register(
 );
 
 const Dashboard = () => {
+  const [loading, setLoading] = useState(true);
   const [isSidebarOpen, setIsSidebarOpen] = useState(false);
   const { user, isAuthenticated, isLoading } = useAuth0();
 
@@ -66,6 +70,15 @@ const Dashboard = () => {
   const navigate = useNavigate();
   // Example progress data
   const progress = 55; // 75% complete
+
+  useEffect(() => {
+    const timer = setTimeout(() => {
+      setLoading(false);
+    }, 500);
+
+    // Cleanup timer on component unmount
+    return () => clearTimeout(timer);
+  }, []);
 
   // Data for Line Chart
   const lineData = {
@@ -135,25 +148,31 @@ const Dashboard = () => {
             Your Dashboard
           </h1>
           <div className="flex bg-purple-200 rounded-3xl px-4 py-7 ">
-            <img
-              className="h-10 rounded-full mr-2 "
-              src={(isAuthenticated && user.picture) || defaultPicture}
-              alt={(isAuthenticated && user.name) || defaultName}
-            />
-            <div>
-              <h2 className="text-base font-bold text-gray-800 ">
-                {(isAuthenticated && user.name) || defaultName}
-              </h2>{" "}
-              <p>
-                {isAuthenticated && (
-                  <p className="text-gray-600 text-xs md:text-sm mb-4">
-                    {" "}
-                    {user.email}
+            {isLoading ? (
+              <ContentSkeleton />
+            ) : (
+              <>
+                <img
+                  className="h-10 rounded-full mr-2 "
+                  src={(isAuthenticated && user.picture) || defaultPicture}
+                  alt={(isAuthenticated && user.name) || defaultName}
+                />
+                <div>
+                  <h2 className="text-base font-bold text-gray-800 ">
+                    {(isAuthenticated && user.name) || defaultName}
+                  </h2>{" "}
+                  <p>
+                    {isAuthenticated && (
+                      <p className="text-gray-600 text-xs md:text-sm mb-4">
+                        {" "}
+                        {user.email}
+                      </p>
+                    )}
                   </p>
-                )}
-              </p>
-              <Button onClick={handleClick} description={"My Profile"} />
-            </div>
+                  <Button onClick={handleClick} description={"My Profile"} />
+                </div>
+              </>
+            )}{" "}
           </div>
         </div>
 
@@ -192,158 +211,198 @@ const Dashboard = () => {
                   </p>
                 </div>
               </motion.div>
-              <div className="items-center justify-center">
-                {/* <h3>Your enrolled courses</h3> */}
-                <div className="grid grid-cols-1 md:grid-cols-3 gap-2">
-                  <div className="grid grid-cols-2 gap-4 p-2 rounded-3xl ">
-                    <div className="bg-[#f3c5c5] rounded-3xl p-6 shadow-md">
-                      <div className="flex justify-between items-center">
-                        <div className="flex items-center ">
-                          <div className=" bg-white p-1 rounded-full ">
-                            <FaBook />
-                          </div>
-                          <p className="text-xs ml-1">course category</p>
-                        </div>
+              {loading ? (
+                <CardSkeleton />
+              ) : (
+                <>
+                  <div className="items-center justify-center">
+                    {/* <h3>Your enrolled courses</h3> */}
+                    <div className="grid grid-cols-1 md:grid-cols-3 gap-2">
+                      <div className="grid grid-cols-2 gap-4 p-2 rounded-3xl ">
+                        <div className="bg-[#f3c5c5] rounded-3xl p-6 shadow-md">
+                          <div className="flex justify-between items-center">
+                            <div className="flex items-center ">
+                              <div className=" bg-white p-1 rounded-full ">
+                                <FaBook />
+                              </div>
+                              <p className="text-xs ml-1">course category</p>
+                            </div>
 
-                        <div className="flex items-center text-xs bg-white p-1 rounded-3xl">
-                          <StarIcon fontSize="10px" />
-                          4.5
+                            <div className="flex items-center text-xs bg-white p-1 rounded-3xl">
+                              <StarIcon fontSize="10px" />
+                              4.5
+                            </div>
+                          </div>
+                          <h2 className="text-xl font-bold mt-2">
+                            Course Name
+                          </h2>
+                          <p className="mt-4  text-xs">
+                            {" "}
+                            800+ students enrolled.
+                          </p>
+                        </div>
+                        <div className="bg-[#fae0c1] rounded-3xl p-6 shadow-md">
+                          <div className="flex justify-between items-center">
+                            <div className="flex items-center ">
+                              <div className=" bg-white p-1 rounded-full ">
+                                <FaBook />
+                              </div>
+                              <p className="text-xs ml-1">course category</p>
+                            </div>
+
+                            <div className="flex items-center text-xs bg-white p-1 rounded-3xl">
+                              <StarIcon fontSize="10px" />
+                              4.5
+                            </div>
+                          </div>
+                          <h2 className="text-xl font-bold mt-2">
+                            Course Name
+                          </h2>
+                          <p className="mt-4  text-xs">
+                            {" "}
+                            800+ students enrolled.
+                          </p>
+                        </div>
+                        <div className="bg-[#d5d2fe] rounded-3xl p-6 shadow-md">
+                          <div className="flex justify-between items-center">
+                            <div className="flex items-center ">
+                              <div className=" bg-white p-1 rounded-full ">
+                                <FaBook />
+                              </div>
+                              <p className="text-xs ml-1">course category</p>
+                            </div>
+
+                            <div className="flex items-center text-xs bg-white p-1 rounded-3xl">
+                              <StarIcon fontSize="10px" />
+                              4.5
+                            </div>
+                          </div>
+                          <h2 className="text-xl font-bold mt-2">
+                            Course Name
+                          </h2>
+                          <p className="mt-4  text-xs">
+                            {" "}
+                            800+ students enrolled.
+                          </p>
+                        </div>
+                        <div className="bg-[#bff0db] rounded-3xl p-6 shadow-md">
+                          <div className="flex justify-between items-center">
+                            <div className="flex items-center ">
+                              <div className=" bg-white p-1 rounded-full ">
+                                <FaBook />
+                              </div>
+                              <p className="text-xs ml-1">course category</p>
+                            </div>
+
+                            <div className="flex items-center text-xs bg-white p-1 rounded-3xl">
+                              <StarIcon fontSize="10px" />
+                              4.5
+                            </div>
+                          </div>
+                          <h2 className="text-xl font-bold mt-2">
+                            Course Name
+                          </h2>
+                          <p className="mt-4  text-xs">
+                            {" "}
+                            800+ students enrolled.
+                          </p>
                         </div>
                       </div>
-                      <h2 className="text-xl font-bold mt-2">Course Name</h2>
-                      <p className="mt-4  text-xs"> 800+ students enrolled.</p>
-                    </div>
-                    <div className="bg-[#fae0c1] rounded-3xl p-6 shadow-md">
-                      <div className="flex justify-between items-center">
-                        <div className="flex items-center ">
-                          <div className=" bg-white p-1 rounded-full ">
-                            <FaBook />
-                          </div>
-                          <p className="text-xs ml-1">course category</p>
-                        </div>
 
-                        <div className="flex items-center text-xs bg-white p-1 rounded-3xl">
-                          <StarIcon fontSize="10px" />
-                          4.5
-                        </div>
+                      <div className="bg-[#f3ebe5] rounded-3xl  flex justify-center items-center h-full">
+                        <LocalizationProvider dateAdapter={AdapterDayjs}>
+                          <DateRangeCalendar calendars={1} />
+                        </LocalizationProvider>
                       </div>
-                      <h2 className="text-xl font-bold mt-2">Course Name</h2>
-                      <p className="mt-4  text-xs"> 800+ students enrolled.</p>
-                    </div>
-                    <div className="bg-[#d5d2fe] rounded-3xl p-6 shadow-md">
-                      <div className="flex justify-between items-center">
-                        <div className="flex items-center ">
-                          <div className=" bg-white p-1 rounded-full ">
-                            <FaBook />
-                          </div>
-                          <p className="text-xs ml-1">course category</p>
-                        </div>
 
-                        <div className="flex items-center text-xs bg-white p-1 rounded-3xl">
-                          <StarIcon fontSize="10px" />
-                          4.5
-                        </div>
-                      </div>
-                      <h2 className="text-xl font-bold mt-2">Course Name</h2>
-                      <p className="mt-4  text-xs"> 800+ students enrolled.</p>
-                    </div>
-                    <div className="bg-[#bff0db] rounded-3xl p-6 shadow-md">
-                      <div className="flex justify-between items-center">
-                        <div className="flex items-center ">
-                          <div className=" bg-white p-1 rounded-full ">
-                            <FaBook />
-                          </div>
-                          <p className="text-xs ml-1">course category</p>
-                        </div>
+                      {/* Progress Overview */}
 
-                        <div className="flex items-center text-xs bg-white p-1 rounded-3xl">
-                          <StarIcon fontSize="10px" />
-                          4.5
+                      <motion.div
+                        custom={0.4}
+                        initial="hidden"
+                        animate="visible"
+                        variants={sectionVariants}
+                        className="bg-[#f3ebe5] rounded-3xl  p-4"
+                      >
+                        <h2 className="text-base md:text-xl text-center font-bold  mb-4">
+                          Progress Overview
+                        </h2>
+                        <div className="flex justify-center h-1/2">
+                          <CircularProgressbar
+                            value={progress}
+                            text={`${progress}%`}
+                            styles={buildStyles({
+                              textSize: "16px",
+                              pathColor: `rgba(62, 152, 199, ${
+                                progress / 100
+                              })`,
+                              textColor: "black",
+                              trailColor: "#d6d6d6",
+                              backgroundColor: "#3e98c7",
+                            })}
+                          />
                         </div>
-                      </div>
-                      <h2 className="text-xl font-bold mt-2">Course Name</h2>
-                      <p className="mt-4  text-xs"> 800+ students enrolled.</p>
+                        {/* <p className="text-gray-600 leading-relaxed mt-4">
+                Track your progress and see how far you've come.
+              </p> */}
+                      </motion.div>
                     </div>
                   </div>
-
-                  <div className="bg-[#f3ebe5] rounded-3xl  flex justify-center items-center h-full">
-                    <LocalizationProvider dateAdapter={AdapterDayjs}>
-                      <DateRangeCalendar calendars={1} />
-                    </LocalizationProvider>
-                  </div>
-
-                  {/* Progress Overview */}
-
-                  <motion.div
-                    custom={0.4}
+                </>
+              )}
+              {/* Visualize Your Learning */}
+              {loading ? (
+                <ElementSkeleton />
+              ) : (
+                <>
+                  <motion.section
+                    custom={0.8}
                     initial="hidden"
                     animate="visible"
                     variants={sectionVariants}
-                    className="bg-[#f3ebe5] rounded-3xl  p-4"
+                    className="bg-white rounded-lg shadow-lg p-8 mt-8"
                   >
-                    <h2 className="text-base md:text-xl text-center font-bold  mb-4">
-                      Progress Overview
-                    </h2>
-                    <div className="flex justify-center h-1/2">
-                      <CircularProgressbar
-                        value={progress}
-                        text={`${progress}%`}
-                        styles={buildStyles({
-                          textSize: "16px",
-                          pathColor: `rgba(62, 152, 199, ${progress / 100})`,
-                          textColor: "black",
-                          trailColor: "#d6d6d6",
-                          backgroundColor: "#3e98c7",
-                        })}
-                      />
+                    <div className="grid grid-cols-1 md:grid-cols-2 gap-8">
+                      <div>
+                        <h3 className="text-xl font-bold  mb-4">
+                          Learning Hours
+                        </h3>
+                        <Line data={lineData} />
+                      </div>
+                      <div>
+                        <h3 className="text-xl font-bold mb-4">
+                          Completion Rate
+                        </h3>
+                        <Bar data={barData} />
+                      </div>
                     </div>
-                    {/* <p className="text-gray-600 leading-relaxed mt-4">
-                Track your progress and see how far you've come.
-              </p> */}
-                  </motion.div>
-                </div>
-              </div>
-              {/* Visualize Your Learning */}
-              <motion.section
-                custom={0.8}
-                initial="hidden"
-                animate="visible"
-                variants={sectionVariants}
-                className="bg-white rounded-lg shadow-lg p-8 mt-8"
-              >
-                <div className="grid grid-cols-1 md:grid-cols-2 gap-8">
-                  <div>
-                    <h3 className="text-xl font-bold  mb-4">Learning Hours</h3>
-                    <Line data={lineData} />
-                  </div>
-                  <div>
-                    <h3 className="text-xl font-bold mb-4">Completion Rate</h3>
-                    <Bar data={barData} />
-                  </div>
-                </div>
-              </motion.section>
-              {/* Recent Activities */}
-              <motion.section
-                custom={1.0}
-                initial="hidden"
-                animate="visible"
-                variants={sectionVariants}
-                className="bg-gray-200 rounded-lg shadow-lg p-8 mt-8"
-              >
-                <h2 className="text-2xl font-bold mb-4">Recent Activities</h2>
-                <ul className="text-gray-600 leading-relaxed">
-                  <li>
-                    Completed:{" "}
-                    <strong>Module 5: Machine Learning Basics</strong>
-                  </li>
-                  <li>
-                    Started: <strong>Course 2: Advanced JavaScript</strong>
-                  </li>
-                  <li>
-                    Joined: <strong>Study Group: React Developers</strong>
-                  </li>
-                </ul>
-              </motion.section>
+                  </motion.section>
+                  {/* Recent Activities */}
+                  <motion.section
+                    custom={1.0}
+                    initial="hidden"
+                    animate="visible"
+                    variants={sectionVariants}
+                    className="bg-gray-200 rounded-lg shadow-lg p-8 mt-8"
+                  >
+                    <h2 className="text-2xl font-bold mb-4">
+                      Recent Activities
+                    </h2>
+                    <ul className="text-gray-600 leading-relaxed">
+                      <li>
+                        Completed:{" "}
+                        <strong>Module 5: Machine Learning Basics</strong>
+                      </li>
+                      <li>
+                        Started: <strong>Course 2: Advanced JavaScript</strong>
+                      </li>
+                      <li>
+                        Joined: <strong>Study Group: React Developers</strong>
+                      </li>
+                    </ul>
+                  </motion.section>
+                </>
+              )}
             </TabPanel>
             <TabPanel value="2">
               {" "}
