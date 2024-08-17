@@ -28,6 +28,8 @@ const Chatbot = () => {
           message: userMessage,
         }
       );
+      
+      console.log("Received response from Rasa server:", response.data);
 
       const botResponses = response.data;
       const botMessages = botResponses.map((message, index) => ({
