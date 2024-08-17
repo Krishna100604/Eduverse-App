@@ -22,7 +22,7 @@ const Chatbot = () => {
 
     try {
       const response = await axios.post(
-        "http://<your-rasa-server-url>:5005/webhooks/rest/webhook", // Replace <your-rasa-server-url> with your Rasa server URL
+        "http://localhost:5005/webhooks/rest/webhook",
         {
           sender: "user",
           message: userMessage,
@@ -82,8 +82,8 @@ const Chatbot = () => {
               <div
                 key={index}
                 className={`p-3 rounded-lg max-w-xs ${message.sender === "user"
-                    ? "bg-blue-500 self-end text-white"
-                    : "bg-gray-300 self-start text-black"
+                  ? "bg-blue-500 self-end text-white"
+                  : "bg-gray-300 self-start text-black"
                   }`}
               >
                 <p className="text-sm leading-relaxed">{message.text}</p>
