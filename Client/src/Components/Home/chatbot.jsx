@@ -1,9 +1,7 @@
 import React, { useState, useEffect, useRef } from "react";
 import axios from "axios";
 import { motion } from "framer-motion";
-import { FaCommentDots } from "react-icons/fa";
-import { FaRobot } from "react-icons/fa";
-
+import { FaCommentDots, FaRobot } from "react-icons/fa";
 
 const Chatbot = () => {
   const [isOpen, setIsOpen] = useState(false);
@@ -23,21 +21,21 @@ const Chatbot = () => {
     setUserMessage("");
 
     try {
-      const response = await axios({
-        url: `https://generativelanguage.googleapis.com/v1beta/models/gemini-1.5-flash-latest:generateContent?key=${
-          import.meta.env.VITE_CHATBOT_API_KEY
-        }`,
-        method: "post",
-        data: { contents: [{ parts: [{ text: userMessage }] }] },
-      });
+      const response = await axios.post(
+        "http://<your-rasa-server-url>:5005/webhooks/rest/webhook", // Replace <your-rasa-server-url> with your Rasa server URL
+        {
+          sender: "user",
+          message: userMessage,
+        }
+      );
 
-      const botResponse =
-        response.data.candidates[0].content.parts[0].text ||
-        "Error generating response";
-      setMessages((prevMessages) => [
-        ...prevMessages,
-        { sender: "bot", text: botResponse },
-      ]);
+      const botResponses = response.data;
+      const botMessages = botResponses.map((message, index) => ({
+        sender: "bot",
+        text: message.text || "Error generating response",
+      }));
+
+      setMessages((prevMessages) => [...prevMessages, ...botMessages]);
     } catch (error) {
       setMessages((prevMessages) => [
         ...prevMessages,
@@ -83,11 +81,10 @@ const Chatbot = () => {
             {messages.map((message, index) => (
               <div
                 key={index}
-                className={`p-3 rounded-lg max-w-xs ${
-                  message.sender === "user"
+                className={`p-3 rounded-lg max-w-xs ${message.sender === "user"
                     ? "bg-blue-500 self-end text-white"
                     : "bg-gray-300 self-start text-black"
-                }`}
+                  }`}
               >
                 <p className="text-sm leading-relaxed">{message.text}</p>
               </div>
