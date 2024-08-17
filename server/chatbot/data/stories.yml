@@ -1,0 +1,73 @@
+version: "3.1"
+
+stories:
+
+  - story: greet user
+    steps:
+      - intent: greet
+      - action: utter_greet
+
+  - story: goodbye user
+    steps:
+      - intent: goodbye
+      - action: utter_goodbye
+
+  - story: ask about Eduverse
+    steps:
+      - intent: ask_eduverse
+      - action: utter_ask_eduverse
+
+  - story: ask about features
+    steps:
+      - intent: ask_features
+      - action: utter_ask_features
+
+  - story: ask about adaptive learning
+    steps:
+      - intent: ask_adaptive_learning
+      - action: utter_ask_adaptive_learning
+
+  - story: ask about content aggregation
+    steps:
+      - intent: ask_content_aggregation
+      - action: utter_ask_content_aggregation
+
+  - story: ask about gamification
+    steps:
+      - intent: ask_gamification
+      - action: utter_ask_gamification
+
+  - story: ask about community features
+    steps:
+      - intent: ask_community
+      - action: utter_ask_community
+
+  - story: ask about expert Q&A
+    steps:
+      - intent: ask_expert_qa
+      - action: utter_ask_expert_qa
+
+  - story: ask about technologies used in Eduverse
+    steps:
+      - intent: ask_technologies
+      - action: utter_ask_technologies
+
+  - story: ask about NLP features
+    steps:
+      - intent: ask_nlp
+      - action: utter_ask_nlp
+
+  - story: ask about social learning features
+    steps:
+      - intent: ask_social_learning
+      - action: utter_ask_social_learning
+
+  - story: thank the bot
+    steps:
+      - intent: thank_you
+      - action: utter_thank_you
+
+  - story: user asks something unclear
+    steps:
+      - intent: other
+      - action: utter_other

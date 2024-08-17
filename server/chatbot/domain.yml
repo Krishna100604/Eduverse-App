@@ -1,0 +1,88 @@
+version: "3.1"
+
+intents:
+  - greet
+  - goodbye
+  - ask_eduverse
+  - ask_features
+  - ask_adaptive_learning
+  - ask_content_aggregation
+  - ask_gamification
+  - ask_community
+  - ask_expert_qa
+  - ask_technologies
+  - ask_nlp
+  - ask_social_learning
+  - thank_you
+  - other
+
+responses:
+  utter_greet:
+    - text: "Hello! How can I assist you today?"
+
+  utter_goodbye:
+    - text: "Goodbye! Have a great day!"
+
+  utter_ask_eduverse:
+    - text: |
+        Eduverse is a personalized learning assistant that adapts to your individual learning style and needs. It helps students by aggregating high-quality educational content, gamifying the learning process, and facilitating community collaboration.
+
+  utter_ask_features:
+    - text: |
+        Eduverse offers several key features including:
+        - Adaptive learning tailored to individual students
+        - Content aggregation from various educational sources
+        - Gamification to motivate and engage learners
+        - Community collaboration features to promote peer learning
+        - Optional expert Q&A for personalized support
+
+  utter_ask_adaptive_learning:
+    - text: |
+        Adaptive learning in Eduverse uses machine learning algorithms to personalize your learning experience. Based on your performance and learning style, Eduverse curates the most relevant materials to help you succeed.
+
+  utter_ask_content_aggregation:
+    - text: |
+        Eduverse aggregates content from multiple high-quality sources such as videos, articles, and interactive exercises. It selects the best content based on your chosen topic, skill level, and learning preferences.
+
+  utter_ask_gamification:
+    - text: |
+        Eduverse motivates students with gamification. You can earn points, unlock badges, and track your progress as you complete learning tasks. It's designed to make learning fun and rewarding.
+
+  utter_ask_community:
+    - text: |
+        Eduverse provides community and collaboration features that allow students to connect, ask questions, share resources, and work together on learning projects. You can interact with peers and support each other's learning journey.
+
+  utter_ask_expert_qa:
+    - text: |
+        Eduverse includes an optional Expert Q&A feature where students can get help from subject matter experts. You can ask questions and receive guidance, either through live chat or an asynchronous Q&A forum.
+
+  utter_ask_technologies:
+    - text: |
+        Eduverse is built using modern technologies such as React, Angular, or Django for web development, and machine learning libraries like TensorFlow or PyTorch for personalization. It also integrates APIs for content aggregation and gamification libraries for a more engaging experience.
+
+  utter_ask_nlp:
+    - text: |
+        Eduverse uses Natural Language Processing (NLP) to understand your queries and personalize content recommendations. This ensures that the content you receive aligns with your learning style and specific needs.
+
+  utter_ask_social_learning:
+    - text: |
+        Eduverse supports social learning through features like group study rooms, peer-to-peer collaboration, and project-based learning. You can work together with others, learn from each other, and share your knowledge.
+
+  utter_iamabot:
+    - text: "I am a bot created to assist you with your queries about Eduverse."
+
+  utter_thank_you:
+    - text: "You're welcome! I'm here to help anytime."
+
+  utter_other:
+    - text: "Can you please clarify your question? I'm here to assist with anything related to Eduverse."
+
+entities: []
+
+slots: {}
+
+actions: []
+
+session_config:
+  session_expiration_time: 60
+  carry_over_slots_to_new_session: true

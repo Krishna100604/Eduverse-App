@@ -1,0 +1,112 @@
+version: "3.1"
+nlu:
+  # Intent: Greeting
+  - intent: greet
+    examples: |
+      - Hi
+      - Hello
+      - Hey there
+      - Hi, how are you?
+  
+  # Intent: Goodbye
+  - intent: goodbye
+    examples: |
+      - Goodbye
+      - See you later
+      - Bye for now
+  
+  # Intent: Ask About Eduverse
+  - intent: ask_eduverse
+    examples: |
+      - What is Eduverse?
+      - Tell me about Eduverse
+      - Can you explain Eduverse?
+      - What does Eduverse do?
+  
+  # Intent: Ask About Features
+  - intent: ask_features
+    examples: |
+      - What are the features of Eduverse?
+      - Tell me about the features
+      - What can Eduverse do?
+      - How does Eduverse help students?
+
+  # Intent: Ask About Adaptive Learning
+  - intent: ask_adaptive_learning
+    examples: |
+      - What is adaptive learning in Eduverse?
+      - How does Eduverse adapt to my learning style?
+      - Tell me about adaptive learning
+      - How does machine learning work in Eduverse?
+
+  # Intent: Ask About Content Aggregation
+  - intent: ask_content_aggregation
+    examples: |
+      - What is content aggregation?
+      - How does Eduverse aggregate content?
+      - Where does Eduverse get its content from?
+      - Tell me about content aggregation in Eduverse
+
+  # Intent: Ask About Gamification
+  - intent: ask_gamification
+    examples: |
+      - What is gamification in Eduverse?
+      - How does the points system work in Eduverse?
+      - Tell me about the badges in Eduverse
+      - How does Eduverse motivate students?
+
+  # Intent: Ask About Community and Collaboration
+  - intent: ask_community
+    examples: |
+      - What community features does Eduverse offer?
+      - How can students collaborate in Eduverse?
+      - Is there a way to connect with other students?
+      - How does Eduverse support collaboration?
+
+  # Intent: Ask About Expert Q&A
+  - intent: ask_expert_qa
+    examples: |
+      - Does Eduverse have an expert Q&A?
+      - Can I talk to educators in Eduverse?
+      - How does the Q&A feature work?
+      - Can I ask questions to experts?
+
+  # Intent: Ask About Technologies
+  - intent: ask_technologies
+    examples: |
+      - What technologies does Eduverse use?
+      - Tell me about the technologies behind Eduverse
+      - How is Eduverse built?
+      - What tech stack powers Eduverse?
+
+  # Intent: Ask About NLP
+  - intent: ask_nlp
+    examples: |
+      - How does NLP work in Eduverse?
+      - Does Eduverse understand my questions?
+      - Tell me about NLP in Eduverse
+      - How does Eduverse personalize content using NLP?
+
+  # Intent: Ask About Social Learning
+  - intent: ask_social_learning
+    examples: |
+      - What are the social learning features of Eduverse?
+      - How does Eduverse encourage peer learning?
+      - Can I work with others in Eduverse?
+      - How does Eduverse support group study?
+
+  # Intent: Thank You
+  - intent: thank_you
+    examples: |
+      - Thanks
+      - Thank you
+      - I appreciate it
+      - Thanks a lot
+
+  # Intent: Other
+  - intent: other
+    examples: |
+      - Can you help me with something else?
+      - I need more information
+      - Tell me more
+
