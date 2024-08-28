@@ -1,6 +1,13 @@
-import express from "express";
+const express = require("express");
+const dotenv = require("dotenv");
+
+// Load environment variables from .env file
+dotenv.config();
+
 const app = express();
 
+// Middleware to parse JSON bodies
+app.use(express.json());
 
 app.get("/", (req, res) => {
   res.send("Eduverse is running perfect");
@@ -8,11 +15,6 @@ app.get("/", (req, res) => {
 
 const PORT = process.env.PORT || 5005;
 
-mongoose
-  .connect("")
-  .then(() =>
-    app.listen(PORT, () => {
-      console.log(`server running on port ${PORT}`);
-    })
-  )
-  .catch((err) => console.log(err.message));
+app.listen(PORT, () => {
+  console.log(`Server running on port ${PORT}`);
+});

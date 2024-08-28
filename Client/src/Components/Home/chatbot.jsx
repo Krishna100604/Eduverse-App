@@ -22,23 +22,22 @@ const Chatbot = () => {
 
     try {
       const response = await axios.post(
-        "http://localhost:5005/webhooks/rest/webhook",
+        `${import.meta.env.VITE_RASA_SERVER_URL}/webhooks/rest/webhook`, // updated line
         {
           sender: "user",
           message: userMessage,
         }
       );
-      
       console.log("Received response from Rasa server:", response.data);
-
       const botResponses = response.data;
-      const botMessages = botResponses.map((message, index) => ({
+      const botMessages = botResponses.map((message) => ({
         sender: "bot",
         text: message.text || "Error generating response",
       }));
 
       setMessages((prevMessages) => [...prevMessages, ...botMessages]);
     } catch (error) {
+      console.error("Error fetching response:", error);
       setMessages((prevMessages) => [
         ...prevMessages,
         {
@@ -83,10 +82,11 @@ const Chatbot = () => {
             {messages.map((message, index) => (
               <div
                 key={index}
-                className={`p-3 rounded-lg max-w-xs ${message.sender === "user"
-                  ? "bg-blue-500 self-end text-white"
-                  : "bg-gray-300 self-start text-black"
-                  }`}
+                className={`p-3 rounded-lg max-w-xs ${
+                  message.sender === "user"
+                    ? "bg-blue-500 self-end text-white"
+                    : "bg-gray-300 self-start text-black"
+                }`}
               >
                 <p className="text-sm leading-relaxed">{message.text}</p>
               </div>
