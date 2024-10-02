@@ -22,7 +22,7 @@ const Chatbot = () => {
 
     try {
       const response = await axios.post(
-        `${import.meta.env.VITE_RASA_SERVER_URL}/webhooks/rest/webhook`, // updated line
+        `${import.meta.env.VITE_RASA_SERVER_URL}/webhooks/rest/webhook`, 
         {
           sender: "user",
           message: userMessage,
