@@ -15,7 +15,7 @@ const About = () => {
 
   return (
     <>
-      <div className="bg-[#f1cffe] h-screen px-10 py-5 flex items-center justify-between">
+      <div className="bg-[#f1cffe] lg:h-screen px-10 py-5 flex items-center justify-between">
         <div className="md:w-1/2">
           {loading ? (
             <ContentSkeleton />
@@ -28,7 +28,7 @@ const About = () => {
                 </span>
                 online education
               </h1>
-              <p>
+              <p className=" text-xs md:text-sm">
                 Lorem ipsum dolor sit amet, consectetur adipisicing elit.
                 Molestiae, quasi sint et accusamus labore nulla reiciendis
                 maxime possimus ratione alias totam deleniti eius optio tempore

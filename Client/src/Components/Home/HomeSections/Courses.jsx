@@ -41,7 +41,7 @@ const Courses = () => {
   ];
 
   return (
-    <div className="bg-yellow-100 h-screen p-10  items-center justify-between ">
+    <div className="bg-yellow-100 lg:h-screen p-10  items-center justify-between ">
       <div className=" ">
         {loading ? (
           <ContentSkeleton />

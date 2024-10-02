@@ -24,7 +24,7 @@ const Features = () => {
   ];
   return (
     <div>
-      <div className="bg-[#f5ffee] h-screen p-10  items-center ">
+      <div className="bg-[#f5ffee] lg:h-screen p-10  items-center ">
         <div className="flex ">
           {loading ? (
             <ContentSkeleton width={800} height={50} />
@@ -36,7 +36,7 @@ const Features = () => {
                 </h2>
               </div>
               <div className="w-2/4">
-                <p className="text-sm mb-5">
+                <p className=" text-xs md:text-sm mb-5">
                   With Eduverse, you can earn points, unlock achievements, and
                   compete with friends as you explore a vast array of learning
                   materials tailored to your needs. Whether you're looking to

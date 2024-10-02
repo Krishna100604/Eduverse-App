@@ -6,7 +6,7 @@ import {
   useLocation,
 } from "react-router-dom";
 import Navbar from "./Components/Navbar";
-import MainContent from "./Components/Home/MainContent";
+import MainContent from "./Components/Home/HomeSections/MainContent";
 import Footer from "./Components/Footer";
 import Dashboard from "./Components/Dashboard/Dashboard";
 import Login from "./Components/Auth/Login";
